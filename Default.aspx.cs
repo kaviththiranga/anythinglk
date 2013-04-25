@@ -7,6 +7,12 @@ using System.Web.UI.WebControls;
 
 public partial class _Default : System.Web.UI.Page
 {
+    protected override void InitializeCulture()
+    {
+       int i = Master.One;
+        base.InitializeCulture();
+        
+    }
     protected void Page_Load(object sender, EventArgs e)
     {
 

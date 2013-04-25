@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/anything.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
+
+<%@ MasterType VirtualPath="~/anything.master" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
