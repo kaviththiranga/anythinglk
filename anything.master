@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="anything.master.cs" Inherits="anything" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="bootstrap/css/customoverrides.css" rel="stylesheet" />
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
+    <title></title>
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    
+     <div id="PageDiv" class="container">
+
+        <form id="PageForm" runat="server">
+        <!-- start of header -->
+        <div id="HeaderDiv" class="row well">
+
+            <div id="LogoDiv" class="span3">
+                <h1>anything.lk</h1>
+            </div>
+
+            <div id="BannerAreaDiv" class="span5">
+
+                <div id="BannerDiv" class="text-center">
+                    <asp:ContentPlaceHolder id="BannerPlaceHolder" runat="server">
+                        <p class="muted">bannners area</p>
+                    </asp:ContentPlaceHolder> 
+                </div>
+                           
+            </div>
+
+            <div id="RightTopDiv" class="span3">
+
+                <div id="LoginInfoDiv" class="pull-right">
+                    <asp:Button ID="Button2" CssClass="btn btn-link" runat="server" Text="<%$ Resources:LangResources, RegisterLabel  %>" />
+                    <asp:Button ID="Button1" CssClass="btn btn-link" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" />
+                </div>
+                  
+                <asp:ContentPlaceHolder id="CartInfoPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+        <!-- end of header -->
+
+        <!-- Start of NaviPanel Area -->
+        <div id="NavPanelDiv" class="row">
+
+        </div>
+
+        <!-- End of NaviPanel Area -->
+
+        <!-- Start of slide show area -->
+        <div id="SlideShowDiv" class="row">
+
+            <asp:ContentPlaceHolder id="SildeShowContentPlaceHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>        
+        </div>
+        <!-- End of slide show area -->
+
+        <!-- Start of the main content area -->
+        <div id="BodyContentDiv" class="row">
+
+            <!-- Start of content area -->
+            <div id="ContentArea" class="span9 well">
+                <asp:ContentPlaceHolder id="ContentAreaPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder> 
+            </div> 
+            <!-- End of content area -->
+            
+            <!-- start of right panel -->
+            <div id="RightPanel" class="span2 well">
+                <asp:ContentPlaceHolder id="RightPanelPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>        
+            </div>
+            <!-- end of right panel -->    
+
+        </div> 
+        <!-- End of the main content area -->
+
+        <!-- start of footer -->
+        <div id="Footer" class="row well">
+        
+        </div>
+        <!-- End of footer -->
+
+        </form>
+    </div>
+    
+</body>
+</html>
