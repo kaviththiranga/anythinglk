@@ -9,12 +9,21 @@ public partial class _Default : System.Web.UI.Page
 {
     protected override void InitializeCulture()
     {
-       int i = Master.One;
+        String language = (String)Session["UICulture"];
+        
+        if (language != null) {
+        
+            UICulture = language;
+        }
+        else if(Request.Form["language"] != null)
+        {
+            UICulture = Request["language"];
+        }
         base.InitializeCulture();
         
     }
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        InitializeCulture();
     }
 }

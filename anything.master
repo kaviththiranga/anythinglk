@@ -51,12 +51,13 @@
         <!-- end of header -->
 
         <!-- Start of NaviPanel Area -->
-        <div class="pull-left">
+        <div id="LangPanelDiv" class="row">
+            
             <div class="btn-group">
-                    <asp:Button CssClass="btn" ID="Button3" runat="server" Text="English" />
-                    <asp:Button CssClass="btn" ID="Button4" runat="server" Text="සිංහල" OnClick="Button4_Click" />
-                    <asp:Button CssClass="btn" ID="Button5" runat="server" Text="தமிழ்" />
-              </div>
+                    <asp:Button Height="28px" CssClass="btn" CommandName="language" CommandArgument="en" ID="Button3" runat="server" Text="English" OnClick="Button3_Click" />
+                    <asp:Button Height="28px" CssClass="btn" CommandName="language" CommandArgument="si" ID="Button4" runat="server" Text="සිංහල" OnClick="Button4_Click" />
+                    <asp:Button Height="28px" CssClass="btn" CommandName="language" CommandArgument="ta" ID="Button5" runat="server" Text="தமிழ்" OnClick="Button5_Click" />
+            </div>
         </div>
         <div id="NavPanelDiv" class="row">
 

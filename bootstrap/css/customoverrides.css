@@ -1,1 +1,13 @@
-﻿
+﻿#LangPanelDiv {
+    margin-bottom:15px;
+}
+
+#ContentArea {
+    margin-left:0;
+}
+
+#RightPanel {
+    margin-right:0;
+}
+
+

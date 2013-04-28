@@ -15,6 +15,14 @@ public partial class anything : System.Web.UI.MasterPage
     }
     protected void Button4_Click(object sender, EventArgs e)
     {
-        
+        Session["UICulture"] = "si";
+    }
+    protected void Button5_Click(object sender, EventArgs e)
+    {
+        Session["UICulture"] = "ta";
+    }
+    protected void Button3_Click(object sender, EventArgs e)
+    {
+        Session["UICulture"] = "en";
     }
 }
