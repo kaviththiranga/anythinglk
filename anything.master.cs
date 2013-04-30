@@ -16,13 +16,16 @@ public partial class anything : System.Web.UI.MasterPage
     protected void Button4_Click(object sender, EventArgs e)
     {
         Session["UICulture"] = "si";
+        Response.Redirect(Request.RawUrl);
     }
     protected void Button5_Click(object sender, EventArgs e)
     {
         Session["UICulture"] = "ta";
+        Response.Redirect(Request.RawUrl);
     }
     protected void Button3_Click(object sender, EventArgs e)
     {
         Session["UICulture"] = "en";
+        Response.Redirect(Request.RawUrl);
     }
 }

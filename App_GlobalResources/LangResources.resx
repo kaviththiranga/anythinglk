@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BooksLabel" xml:space="preserve">
+    <value>Books</value>
+  </data>
+  <data name="DailyDealsLabel" xml:space="preserve">
+    <value>Daily Deals</value>
+  </data>
+  <data name="EventsLabel" xml:space="preserve">
+    <value>Events</value>
+  </data>
   <data name="HomeButtonLabel" xml:space="preserve">
     <value>Home</value>
   </data>
@@ -125,5 +134,11 @@
   </data>
   <data name="SigninLabel" xml:space="preserve">
     <value>Signin</value>
+  </data>
+  <data name="StoreLabel" xml:space="preserve">
+    <value>Store</value>
+  </data>
+  <data name="TravelLabel" xml:space="preserve">
+    <value>Travel</value>
   </data>
 </root>

@@ -75,12 +75,12 @@ text-decoration:none;
             ['images/slides/litrogas.jpg', ''] //<--no trailing comma after very last image element!
         ],
         displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true },
-        navbuttons: ['left.gif', 'right.gif', 'up.gif', 'down.gif'], // path to nav images
+        navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], // path to nav images
         activeslideclass: 'selectedslide', // CSS class that gets added to currently shown DIV slide
         orientation: 'h', //Valid values: "h" or "v"
         persist: true, //remember last viewed slide and recall within same session?
         slideduration: 500 //transition duration (milliseconds)
-    })
+    });
 
 </script>
 </asp:Content>
@@ -93,14 +93,43 @@ text-decoration:none;
     <div id="imageslider" class="" style="height:200px;margin-bottom:20px;text-align:center;"></div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
+    <p>dfdfdfdfdfdf</p><br />
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div class="btn-group btn-group-vertical">
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-list"></i> Daily Deals</button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-shopping-cart"></i> Store</button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> Events</button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> Travel</button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> Books</button>
+        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></button>
+        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-shopping-cart"></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></button>
+        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></button>
+        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></button>
+        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></button>
     </div>
 </asp:Content>
 

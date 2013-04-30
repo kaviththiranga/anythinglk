@@ -117,13 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BooksLabel" xml:space="preserve">
+    <value>පොත්</value>
+  </data>
+  <data name="DailyDealsLabel" xml:space="preserve">
+    <value>දිනපතා වාසි</value>
+  </data>
+  <data name="EventsLabel" xml:space="preserve">
+    <value>වැඩසටහන්</value>
+  </data>
   <data name="HomeButtonLabel" xml:space="preserve">
     <value>මුල් පිටුව</value>
   </data>
   <data name="RegisterLabel" xml:space="preserve">
-    <value>Sin</value>
+    <value>ලියාපදිංචි වීම</value>
   </data>
   <data name="SigninLabel" xml:space="preserve">
-    <value>Sin</value>
+    <value>ලොග් වෙන්න</value>
+  </data>
+  <data name="StoreLabel" xml:space="preserve">
+    <value>ස්ටෝරුව</value>
+  </data>
+  <data name="TravelLabel" xml:space="preserve">
+    <value>සංචාරක</value>
   </data>
 </root>
