@@ -5,25 +5,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class _Default : System.Web.UI.Page
+public partial class _Default : BasePage
 {
-    protected override void InitializeCulture()
-    {
-        String language = (String)Session["UICulture"];
-        
-        if (language != null) {
-        
-            UICulture = language;
-        }
-        else if(Request.Form["language"] != null)
-        {
-            UICulture = Request["language"];
-        }
-        base.InitializeCulture();
-        
-    }
+    
     protected void Page_Load(object sender, EventArgs e)
     {
-        InitializeCulture();
+       
     }
 }
