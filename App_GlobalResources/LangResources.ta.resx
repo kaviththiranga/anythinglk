@@ -138,6 +138,9 @@
   <data name="StoreLabel" xml:space="preserve">
     <value>சேமிக்க</value>
   </data>
+  <data name="termscondtions" xml:space="preserve">
+    <value>விதிமுறைகள் மற்றும் நிபந்தனைகள் தமிழ் இதுவரை இல்லை. Engilsh பதிப்பு பார்க்கவும். நன்றி.</value>
+  </data>
   <data name="TravelLabel" xml:space="preserve">
     <value>சுற்றுலா</value>
   </data>

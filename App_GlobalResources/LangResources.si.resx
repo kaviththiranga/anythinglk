@@ -138,6 +138,9 @@
   <data name="StoreLabel" xml:space="preserve">
     <value>ස්ටෝරුව</value>
   </data>
+  <data name="termscondtions" xml:space="preserve">
+    <value>කරුණාකර ඉංග‍්‍රීසි මාධ්‍යයෙන් ඇති ලිපිය කියවන්න.</value>
+  </data>
   <data name="TravelLabel" xml:space="preserve">
     <value>සංචාරක</value>
   </data>

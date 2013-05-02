@@ -59,6 +59,13 @@ text-decoration:none;
 <script src="bootstrap/js/bgcarousel.js" type="text/javascript">
 
 </script>
+    <script type="text/javascript">
+     (function ($) {
+            $(document).ready(function () {
+                $('#homenav').addClass('active');
+            });
+        })(jQuery);
+    </script>
 
 <script type="text/javascript">
 
