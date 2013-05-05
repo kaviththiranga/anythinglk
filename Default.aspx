@@ -119,6 +119,9 @@ text-decoration:none;
     <p>
         <asp:GridView ID="GridView2" runat="server">
         </asp:GridView>
+    </p>
+    <p>
+        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Button" />
     </p><br />
     
 </asp:Content>

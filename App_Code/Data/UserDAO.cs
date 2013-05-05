@@ -18,11 +18,17 @@ public class UserDAO : AbstractDAO
         userQuery = from user in db.Users select user;
 
         userDataTable = AbstractDAO.LINQToDataTable<User>(userQuery);
-        
+
+        isCacheValid = true;        
 	}
 
     public DataTable getUserTable() 
     {
+        if (!isCacheValid)
+        {
+            userDataTable = AbstractDAO.LINQToDataTable<User>(userQuery);
+        }
+           
         return userDataTable;
     }
 
@@ -43,8 +49,11 @@ public class UserDAO : AbstractDAO
 
     }
 
-    public bool deleteUser(User user) { 
-    
+    public bool deleteUser(User user) {
+
+        db.Users.DeleteOnSubmit(user);
+
+        return submitChanges();
     
     }
 

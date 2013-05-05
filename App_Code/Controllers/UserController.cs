@@ -20,4 +20,18 @@ public class UserController
 
         return userDAO.getUserTable();
     }
+
+    public static User getUserByUsername(String userName)
+    {
+        return userDAO.getUserByUsername(userName);
+    }
+
+    public static User getUserByEmail(String email)
+    {
+        return userDAO.getUserByEmail(email);
+    }
+
+    public static void save(User user) {
+        userDAO.insertOrUpdate(user);
+    }
 }

@@ -12,9 +12,12 @@ public class AbstractDAO
 {
     protected DataClassesDataContext db;
 
+    protected bool isCacheValid;
+
 	public AbstractDAO()
 	{
         db = new DataClassesDataContext();
+        isCacheValid = false;
 	}
 
     public static DataTable LINQToDataTable<T>(IEnumerable<T> varlist)
@@ -65,6 +68,7 @@ public class AbstractDAO
         try
         {
             db.SubmitChanges();
+            isCacheValid = false;
             return true;
         }
         catch (Exception e)

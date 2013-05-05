@@ -13,4 +13,15 @@ public partial class _Default : BasePage
         GridView2.DataSource = UserController.getUserDataTable();
         GridView2.DataBind();
     }
+    protected void Button6_Click(object sender, EventArgs e)
+    {
+        User user = UserController.getUserByEmail("kaviththiranga@gmail.com");
+
+        user.Username = "pubudi";
+
+        UserController.save(user);
+        GridView2.DataSource = UserController.getUserDataTable();
+        GridView2.DataBind();
+        
+    }
 }
