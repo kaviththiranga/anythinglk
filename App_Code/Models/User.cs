@@ -4,9 +4,9 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for Deal
+/// Summary description for User
 /// </summary>
-public partial class Deal
+public partial class User
 {
-    
+
 }

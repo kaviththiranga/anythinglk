@@ -17,9 +17,17 @@ public partial class _Default : BasePage
     {
         User user = UserController.getUserByEmail("kaviththiranga@gmail.com");
 
-        user.Username = "pubudi";
+        user.Username = "pubudinew";
 
         UserController.save(user);
+
+        User user2 = new User();
+
+        user2.Username = "sdsd";
+        user2.Password = "dfdfdf";
+        user2.Email = "dffffffff";
+
+        UserController.save(user2);
         GridView2.DataSource = UserController.getUserDataTable();
         GridView2.DataBind();
         
