@@ -10,6 +10,7 @@ public partial class _Default : BasePage
     
     protected void Page_Load(object sender, EventArgs e)
     {
-       //DealsController.G
+        GridView2.DataSource = UserController.getUserDataTable();
+        GridView2.DataBind();
     }
 }

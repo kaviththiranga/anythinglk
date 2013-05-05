@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 
@@ -8,16 +9,15 @@ using System.Web;
 /// </summary>
 public class UserController
 {
-	public UserController()
+    private static UserDAO userDAO;
+
+	static UserController()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
-
-        User user1 = new User();
-
-        int x = user1.UserID;
-
-        user1.UserID = 50;
+        userDAO = new UserDAO();
 	}
+
+    public static DataTable getUserDataTable() {
+
+        return userDAO.getUserTable();
+    }
 }

@@ -6,7 +6,7 @@ using System.Web;
 /// <summary>
 /// Summary description for DealDAO
 /// </summary>
-public class DealDAO
+public class DealDAO : AbstractDAO
 {
 	public DealDAO()
 	{

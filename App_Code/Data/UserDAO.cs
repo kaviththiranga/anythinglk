@@ -7,21 +7,72 @@ using System.Data;
 /// <summary>
 /// Summary description for UserDAO
 /// </summary>
-public class UserDAO
+public class UserDAO : AbstractDAO
 {
+    private DataTable userDataTable;
 
-    private static DataClassesDataContext db = new DataClassesDataContext();
-
-    private static DataSet userdataset = new DataSet();
+    private IEnumerable<User> userQuery;
 
 	public UserDAO()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
+        userQuery = from user in db.Users select user;
 
-        IEnumerable<User> result = from user in db.Users where user.UserID == 1 select user;
-        
+        userDataTable = AbstractDAO.LINQToDataTable<User>(userQuery);
         
 	}
+
+    public DataTable getUserTable() 
+    {
+        return userDataTable;
+    }
+
+    public bool insertOrUpdate(User user) {
+
+        // This is an update
+        if (user.UserID > 0)
+        {
+            return submitChanges();
+        }
+        else {
+
+            db.Users.InsertOnSubmit(user);
+
+            return submitChanges();
+        }
+
+
+    }
+
+    public bool deleteUser(User user) { 
+    
+    
+    }
+
+    public User getUserByUsername(String userName) {
+
+        foreach (User user in userQuery) { 
+            
+            if(user.Username.Equals(userName)){
+                return user;
+            }
+        }
+
+        return null;
+    }
+
+    public User getUserByEmail(String email)
+    {
+
+        foreach (User user in userQuery)
+        {
+
+            if (user.Email.Equals(email))
+            {
+                return user;
+            }
+        }
+
+        return null;
+    }
+
 }
