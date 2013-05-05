@@ -11,13 +11,14 @@ public class UserDAO : AbstractDAO
 {
     private DataTable userDataTable;
 
-    private IEnumerable<User> userQuery;
+    // LINQ Query to get all records in the table
+    private IEnumerable<User> allUsersQuery;
 
 	public UserDAO()
 	{
-        userQuery = from user in db.Users select user;
+        allUsersQuery = from user in db.Users select user;
 
-        userDataTable = AbstractDAO.LINQToDataTable<User>(userQuery);
+        userDataTable = AbstractDAO.LINQToDataTable<User>(allUsersQuery);
 
         isCacheValid = true;        
 	}
@@ -26,7 +27,7 @@ public class UserDAO : AbstractDAO
     {
         if (!isCacheValid)
         {
-            userDataTable = AbstractDAO.LINQToDataTable<User>(userQuery);
+            userDataTable = AbstractDAO.LINQToDataTable<User>(allUsersQuery);
         }
            
         return userDataTable;
@@ -59,7 +60,7 @@ public class UserDAO : AbstractDAO
 
     public User getUserByUsername(String userName) {
 
-        foreach (User user in userQuery) { 
+        foreach (User user in allUsersQuery) { 
             
             if(user.Username.Equals(userName)){
                 return user;
@@ -72,7 +73,7 @@ public class UserDAO : AbstractDAO
     public User getUserByEmail(String email)
     {
 
-        foreach (User user in userQuery)
+        foreach (User user in allUsersQuery)
         {
 
             if (user.Email.Equals(email))

@@ -11,6 +11,7 @@ public class DealDAO : AbstractDAO
 {
 	private DataTable dealDataTable;
 
+    // LINQ Query to get all records in the table
     private IEnumerable<Deal> allDealsQuery;
 
     public DealDAO()
@@ -50,9 +51,9 @@ public class DealDAO : AbstractDAO
 
     }
 
-    public bool deleteUser(User user) {
+    public bool deleteDeal(Deal deal) {
 
-        db.Users.DeleteOnSubmit(user);
+        db.Deals.DeleteOnSubmit(deal);
 
         return submitChanges();
     
