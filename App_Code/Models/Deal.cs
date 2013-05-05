@@ -6,12 +6,8 @@ using System.Web;
 /// <summary>
 /// Summary description for Deal
 /// </summary>
-public class Deal
+public partial class Deal
 {
-	public Deal()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+
+    
 }

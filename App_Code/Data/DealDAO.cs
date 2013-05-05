@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 
 /// <summary>
-/// Summary description for User
+/// Summary description for DealDAO
 /// </summary>
-public class User
+public class DealDAO
 {
-	public User()
+	public DealDAO()
 	{
 		//
 		// TODO: Add constructor logic here

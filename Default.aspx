@@ -100,35 +100,21 @@ text-decoration:none;
     <div id="imageslider" class="" style="height:200px;margin-bottom:20px;text-align:center;"></div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
-    <p>dfdfdfdfdfdf</p><br />
+  
+   
+    <p>
+        <asp:LinqDataSource ID="LinqDataSource1" runat="server" ContextTypeName="DataClassesDataContext" EnableDelete="True" EnableInsert="True" EnableUpdate="True" EntityTypeName="" TableName="Categories">
+        </asp:LinqDataSource>
+        <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="CatID" DataSourceID="LinqDataSource1">
+            <Columns>
+                <asp:CommandField ShowDeleteButton="True" ShowEditButton="True" ShowSelectButton="True" />
+                <asp:BoundField DataField="CatID" HeaderText="CatID" InsertVisible="False" ReadOnly="True" SortExpression="CatID" />
+                <asp:BoundField DataField="CategoryName" HeaderText="CategoryName" SortExpression="CategoryName" />
+                <asp:BoundField DataField="CategoryDesc" HeaderText="CategoryDesc" SortExpression="CategoryDesc" />
+            </Columns>
+        </asp:GridView>
+    </p><br />
+    
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div class="btn-group btn-group-vertical">
