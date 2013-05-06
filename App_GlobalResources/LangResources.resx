@@ -239,4 +239,25 @@ The DCL Referral Credits and Rewards Programs and its benefits are offered at th
   <data name="TravelLabel" xml:space="preserve">
     <value>Travel</value>
   </data>
+  <data name="ConfirmPasswordText" xml:space="preserve">
+    <value>Confirm Password</value>
+  </data>
+  <data name="ContactNoText" xml:space="preserve">
+    <value>Contact No</value>
+  </data>
+  <data name="EmailText" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="FirstNameText" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="LastNameText" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="PasswordText" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="UserNameText" xml:space="preserve">
+    <value>Username</value>
+  </data>
 </root>

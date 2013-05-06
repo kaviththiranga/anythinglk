@@ -5,7 +5,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     
-<style>
+    <style>
 
 div.bgcarousel{ /* CSS for main carousel container */
 background: black url(ajaxload.gif) center center no-repeat; /* loading gif while caoursel is loading */
@@ -133,5 +133,6 @@ text-decoration:none;
         <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></button>
         <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></button>
     </div>
+
 </asp:Content>
 

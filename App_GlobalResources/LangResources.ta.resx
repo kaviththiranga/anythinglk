@@ -144,4 +144,25 @@
   <data name="TravelLabel" xml:space="preserve">
     <value>சுற்றுலா</value>
   </data>
+  <data name="ConfirmPasswordText" xml:space="preserve">
+    <value>கடவுச்சொல் உறுதி</value>
+  </data>
+  <data name="ContactNoText" xml:space="preserve">
+    <value>எண் தொடர்பு</value>
+  </data>
+  <data name="EmailText" xml:space="preserve">
+    <value>மின்னஞ்சல் முகவரி</value>
+  </data>
+  <data name="FirstNameText" xml:space="preserve">
+    <value>முதல் பெயர்</value>
+  </data>
+  <data name="LastNameText" xml:space="preserve">
+    <value>கடந்த பெயர்</value>
+  </data>
+  <data name="PasswordText" xml:space="preserve">
+    <value>கடவுச்சொல்</value>
+  </data>
+  <data name="UserNameText" xml:space="preserve">
+    <value>பயனர்பெயர்</value>
+  </data>
 </root>

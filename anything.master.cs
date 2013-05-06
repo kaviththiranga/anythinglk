@@ -28,4 +28,8 @@ public partial class anything : System.Web.UI.MasterPage
         Session["UICulture"] = "en";
         Response.Redirect(Request.RawUrl);
     }
+    protected void Button2_Click(object sender, EventArgs e)
+    {
+
+    }
 }

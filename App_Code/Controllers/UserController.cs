@@ -16,6 +16,17 @@ public class UserController
         userDAO = new UserDAO();
 	}
 
+    public static User getCurrentUser() {
+
+        return (User)HttpContext.Current.Session["CurrentUser"];
+    }
+
+    public static bool isLoggedIn() {
+        if (getCurrentUser() != null) {
+            return true;
+        }
+        return false;
+    }
     public static DataTable getUserDataTable() {
 
         return userDAO.getUserTable();
@@ -32,6 +43,7 @@ public class UserController
     }
 
     public static void save(User user) {
+
         userDAO.insertOrUpdate(user);
     }
 }

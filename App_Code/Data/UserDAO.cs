@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data;
+using System.Web.Caching;
 
 /// <summary>
 /// Summary description for UserDAO
@@ -14,22 +15,42 @@ public class UserDAO : AbstractDAO
     // LINQ Query to get all records in the table
     private IEnumerable<User> allUsersQuery;
 
+    private SqlCacheDependency sqlDpendency;
+
 	public UserDAO()
 	{
         allUsersQuery = from user in db.Users select user;
 
         userDataTable = AbstractDAO.LINQToDataTable<User>(allUsersQuery);
 
-        isCacheValid = true;        
+        //sqlDpendency = new SqlCacheDependency("anythinglk", "Users");
+
+       // HttpContext.Current.Cache.Insert("UserTable", userDataTable, sqlDpendency);
+
+        isCacheValid = true;
+        Console.WriteLine("Dao constructor");
 	}
 
     public DataTable getUserTable() 
     {
+        /*if (HttpContext.Current.Cache["UserTable"] == null)
+        {
+            userDataTable = AbstractDAO.LINQToDataTable<User>(allUsersQuery);
+
+            HttpContext.Current.Cache.Insert("UserTable", userDataTable, sqlDpendency);
+            Console.WriteLine("Get from database");
+        }
+        else {
+            Console.WriteLine("Get from cache");
+        }
+
+        return (DataTable) HttpContext.Current.Cache["UserTable"];*/
+
         if (!isCacheValid)
         {
             userDataTable = AbstractDAO.LINQToDataTable<User>(allUsersQuery);
         }
-           
+
         return userDataTable;
     }
 

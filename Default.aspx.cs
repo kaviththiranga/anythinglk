@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -10,8 +11,8 @@ public partial class _Default : BasePage
     
     protected void Page_Load(object sender, EventArgs e)
     {
-        GridView2.DataSource = UserController.getUserDataTable();
-        GridView2.DataBind();
+       GridView2.DataSource = UserController.getUserDataTable();
+      GridView2.DataBind();
     }
     protected void Button6_Click(object sender, EventArgs e)
     {
@@ -21,6 +22,7 @@ public partial class _Default : BasePage
 
         UserController.save(user);
 
+        
         User user2 = new User();
 
         user2.Username = "sdsd";
@@ -29,7 +31,7 @@ public partial class _Default : BasePage
 
         UserController.save(user2);
         GridView2.DataSource = UserController.getUserDataTable();
-        GridView2.DataBind();
+       GridView2.DataBind();
         
     }
 }
