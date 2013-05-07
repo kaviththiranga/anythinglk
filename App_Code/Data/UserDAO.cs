@@ -79,18 +79,6 @@ public class UserDAO : AbstractDAO
     
     }
 
-    public User getUserByUsername(String userName) {
-
-        foreach (User user in allUsersQuery) { 
-            
-            if(user.Username.Equals(userName)){
-                return user;
-            }
-        }
-
-        return null;
-    }
-
     public User getUserByEmail(String email)
     {
 

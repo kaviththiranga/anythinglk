@@ -15,6 +15,19 @@ public class UserController
 	{
         userDAO = new UserDAO();
 	}
+    public bool authenticate(string email, string password) {
+
+        User user = userDAO.getUserByEmail(email);
+
+        if (user != null && user.Password.Equals(password)) {
+
+            HttpContext.Current.Session["CurrentUser"] = user;
+
+            return true;
+        }
+
+        return false;
+    }
 
     public static User getCurrentUser() {
 
@@ -32,11 +45,6 @@ public class UserController
         return userDAO.getUserTable();
     }
 
-    public static User getUserByUsername(String userName)
-    {
-        return userDAO.getUserByUsername(userName);
-    }
-
     public static User getUserByEmail(String email)
     {
         return userDAO.getUserByEmail(email);
@@ -47,9 +55,11 @@ public class UserController
         userDAO.insertOrUpdate(user);
     }
 
-    public static bool isUsernameAvailable(string username) {
+    public static bool isEmailNotRegistered(string email)
+    {
 
-        if (getUserByUsername(username) == null) {
+        if (getUserByEmail(email) == null)
+        {
             return true;
         }
 

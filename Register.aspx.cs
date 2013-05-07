@@ -18,19 +18,22 @@ public partial class Register : BasePage
 
         user.FirstName = inputFirstName.Text;
         user.LastName = inputLastName.Text;
-        user.Username = inputUsername.Text;
+        //user.Username = inputUsername.Text;
         user.Email = inputEmail.Text;
         user.Password = inputPassword.Text;
         user.Contact = inputContact.Text;
 
         UserController.save(user);
+
+        Response.Redirect("Profile.aspx");
+
+
     }
 
     [WebMethod]
-    public static bool isUsernameAvailable(string username) {
+    public static bool isEmailNotRegistered(string email) {
 
-       return UserController.isUsernameAvailable(username);
-       
+        return UserController.isEmailNotRegistered(email);
     }
 
 }

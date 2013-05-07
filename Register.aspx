@@ -2,11 +2,11 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">
-        function usernamevalidate(src, args) {
+        function emailvalidate(src, args) {
             $.ajax({
                 type: "POST",
-                url: "Register.aspx/isUsernameAvailable",
-                data: "{'username': '" + args.Value + "'}",
+                url: "Register.aspx/isEmailNotRegistered",
+                data: "{'email': '" + args.Value + "'}",
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 async: false,
@@ -45,20 +45,7 @@
                 </span>
             </div>
         </div>
-        <div class="control-group">
-            <label class="control-label" for="inputUsername"><asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, UserNameText  %>" /></label>
-            <div class="controls">
-                <asp:TextBox ID="inputUsername"  runat="server" placeholder="<%$ Resources:LangResources, UserNameText  %>"></asp:TextBox>
-                <asp:RequiredFieldValidator CssClass="text-error" ID="RequiredFieldValidatorUsername" runat="server"
-                    ControlToValidate="inputUsername" ErrorMessage="Required field cannot be left blank."
-                    Display="Dynamic">
-                </asp:RequiredFieldValidator>
-                <span class="help-inline">
-                    <asp:CustomValidator ID="CustomValidatorUserName" ControlToValidate="inputUsername" ClientValidationFunction="usernamevalidate" runat="server" ErrorMessage="This Username is already registered"></asp:CustomValidator>
-                    <asp:Label ID="inputUsernameHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
-                </span>
-            </div>
-        </div>
+        
         <div class="control-group">
             <label class="control-label" for="inputEmail"><asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
             <div class="controls">
@@ -73,6 +60,7 @@
                     Display="Dynamic">
                 </asp:RegularExpressionValidator>
                 <span class="help-inline">
+                     <asp:CustomValidator ID="CustomValidatorEmail" CssClass="text-error" ControlToValidate="inputEmail" ClientValidationFunction="emailvalidate" runat="server" ErrorMessage="This Email is already registered"></asp:CustomValidator>
                     <asp:Label ID="inputEmailHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
                 </span>
             </div>
