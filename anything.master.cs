@@ -33,7 +33,23 @@ public partial class anything : System.Web.UI.MasterPage
     }
     protected void Signin_Click(object sender, EventArgs e)
     {
-        
+        if (UserController.authenticate(inputEmailModal.Text, inputPasswordModal.Text)) {
+            Session["AlertMsg"] = "Successfully Logged in. Welcome "+ UserController.getCurrentUser().FirstName+" "+UserController.getCurrentUser().LastName+"! ";
+            Session["AlertMsgClass"] = "alert-success";
+            Response.Redirect("Default.aspx");
+        }
+
+        Session["AlertMsg"] = "Error. Check your credentials and try again.";
+        Session["AlertMsgClass"] = "alert-error";
+    }
+
+    protected void Logout_Click(object sender, EventArgs e)
+    {
+        Session["AlertMsg"] = "Successfully Logged Out. Bye " + UserController.getCurrentUser().FirstName + " " + UserController.getCurrentUser().LastName + "! ";
+        Session["AlertMsgClass"] = "alert-success";
+
+        UserController.logout();
+        Response.Redirect("Default.aspx");
     }
     
 }

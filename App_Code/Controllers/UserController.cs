@@ -15,7 +15,7 @@ public class UserController
 	{
         userDAO = new UserDAO();
 	}
-    public bool authenticate(string email, string password) {
+    public static bool authenticate(string email, string password) {
 
         User user = userDAO.getUserByEmail(email);
 
@@ -27,6 +27,11 @@ public class UserController
         }
 
         return false;
+    }
+
+    public static void logout() {
+
+        HttpContext.Current.Session["CurrentUser"] = null;
     }
 
     public static User getCurrentUser() {
