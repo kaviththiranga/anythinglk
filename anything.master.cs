@@ -8,7 +8,6 @@ using System.Globalization;
 
 public partial class anything : System.Web.UI.MasterPage
 {
-    public int One { get; set; }  
     protected void Page_Load(object sender, EventArgs e)
     {
         
@@ -32,4 +31,9 @@ public partial class anything : System.Web.UI.MasterPage
     {
 
     }
+    protected void Signin_Click(object sender, EventArgs e)
+    {
+        
+    }
+    
 }

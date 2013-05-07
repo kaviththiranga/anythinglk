@@ -7,7 +7,7 @@ data base caching
 localization
 personlization
 accessibility
-
+Profile Page, My Orders
 Main page Deals display
 sub pages display
 shopping cart

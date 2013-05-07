@@ -18,14 +18,15 @@ public partial class Register : BasePage
 
         user.FirstName = inputFirstName.Text;
         user.LastName = inputLastName.Text;
-        //user.Username = inputUsername.Text;
         user.Email = inputEmail.Text;
         user.Password = inputPassword.Text;
         user.Contact = inputContact.Text;
 
         UserController.save(user);
 
-        Response.Redirect("Profile.aspx");
+        Session["AlertMsg"] = "User successfully Registered. Please Sign in using ur credentials.";
+        Session["AlertMsgClass"] = "alert-success";
+        Response.Redirect("Default.aspx");
 
 
     }

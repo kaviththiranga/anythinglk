@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/anything.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
-
+<%@ MasterType  virtualPath="~/anything.master"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">
         function emailvalidate(src, args) {
@@ -50,17 +50,17 @@
             <label class="control-label" for="inputEmail"><asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
             <div class="controls">
                 <asp:TextBox ID="inputEmail"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
-                <asp:RequiredFieldValidator CssClass="text-error" ID="RequiredFieldValidatorEmail" runat="server"
+                <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorEmail" runat="server"
                     ControlToValidate="inputEmail" ErrorMessage="Required field cannot be left blank."
                     Display="Dynamic">
                 </asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator ID="RegularExpressionValidatorEmail" runat="server" CssClass="text-error"
+                <asp:RegularExpressionValidator validationgroup="RegistrationForm" ID="RegularExpressionValidatorEmail" runat="server" CssClass="text-error"
                     ErrorMessage="Invalid email address." ControlToValidate="inputEmail"
                     ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
                     Display="Dynamic">
                 </asp:RegularExpressionValidator>
                 <span class="help-inline">
-                     <asp:CustomValidator ID="CustomValidatorEmail" CssClass="text-error" ControlToValidate="inputEmail" ClientValidationFunction="emailvalidate" runat="server" ErrorMessage="This Email is already registered"></asp:CustomValidator>
+                     <asp:CustomValidator ID="CustomValidatorEmail" validationgroup="RegistrationForm" CssClass="text-error" ControlToValidate="inputEmail" ClientValidationFunction="emailvalidate" runat="server" ErrorMessage="This Email is already registered"></asp:CustomValidator>
                     <asp:Label ID="inputEmailHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
                 </span>
             </div>
@@ -68,8 +68,8 @@
         <div class="control-group">
             <label class="control-label" for="inputPassword"><asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
             <div class="controls">
-                <asp:TextBox ID="inputPassword" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" ></asp:TextBox>
-                <asp:RequiredFieldValidator CssClass="text-error" ID="RequiredFieldValidatorPassword" runat="server"
+                <asp:TextBox ID="inputPassword" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
+                <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorPassword" runat="server"
                     ControlToValidate="inputPassword" ErrorMessage="Required field cannot be left blank."
                     Display="Dynamic">
                 </asp:RequiredFieldValidator>
@@ -81,12 +81,12 @@
         <div class="control-group">
             <label class="control-label" for="inputPassword2"><asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, ConfirmPasswordText  %>" /></label>
             <div class="controls">
-                <asp:TextBox ID="inputPassword2" runat="server" placeholder="<%$ Resources:LangResources, ConfirmPasswordText  %>" ></asp:TextBox>
-                <asp:RequiredFieldValidator CssClass="text-error" ID="RequiredFieldValidatorPassword2" runat="server"
+                <asp:TextBox ID="inputPassword2" runat="server" placeholder="<%$ Resources:LangResources, ConfirmPasswordText  %>" TextMode="Password" ></asp:TextBox>
+                <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorPassword2" runat="server"
                     ControlToValidate="inputPassword2" ErrorMessage="Required field cannot be left blank."
                     Display="Dynamic">
                 </asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="CompareValidatorPassword" CssClass="text-error" runat="server"
+                <asp:CompareValidator validationgroup="RegistrationForm" ID="CompareValidatorPassword" CssClass="text-error" runat="server"
                     ErrorMessage="Passwords do not match." ControlToCompare="inputPassword"
                     ControlToValidate="inputPassword2">
                 </asp:CompareValidator>
@@ -106,7 +106,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <asp:Button ID="Button1" CssClass="btn btn-link" runat="server" Text="<%$ Resources:LangResources, RegisterLabel  %>" OnClick="Button1_Click" />
+                <asp:Button ID="Button1" validationgroup="RegistrationForm" CssClass="btn btn-link" runat="server" Text="<%$ Resources:LangResources, RegisterLabel  %>" OnClick="Button1_Click" />
             </div>
         </div>
     </div>

@@ -56,27 +56,27 @@
             <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3>Log in to Anything.lk</h3>
+                    <h3><asp:Literal ID="Literal10" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /> to Anything.lk</h3>
                 </div>
                 <div class="modal-body">
                     <div class="form-horizontal">
                         <div class="control-group">
-                            <label class="control-label" for="inputEmail">Email</label>
+                            <label class="control-label" for="inputEmail"><asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
                             <div class="controls">
-                                <input type="text" id="inputEmail" placeholder="Email"/>
+                                <asp:TextBox ID="inputEmailModal"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
                             </div>
                         </div>
                         <div class="control-group">
-                            <label class="control-label" for="inputPassword">Password</label>
+                            <label class="control-label" for="inputPassword"><asp:Literal ID="Literal9" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
                             <div class="controls">
-                                <input type="password" id="inputPassword" placeholder="Password"/>
+                                <asp:TextBox ID="inputPasswordModal" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn">Close</a>
-                    <a href="#" class="btn btn-primary">Save changes</a>
+                    <a href="#" data-dismiss="modal" class="btn">Close</a>
+                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" OnClick="Signin_Click" />
                 </div>
             </div>
         <!-- start of header -->
@@ -139,6 +139,15 @@
         </div>
 
         <!-- End of NaviPanel Area -->
+
+        <!-- Start of Alert Msg -->
+        <% if ((string)Session["AlertMsg"] != null) { %>
+            <div class="alert <%= (string)Session["AlertMsgClass"] %>" style="margin-left: 30px;margin-right: 30px;">
+		        <a class="close" data-dismiss="alert">×</a> 
+	            <p><i class="icon-info-sign" style="margin-right: 5px;"></i><%= (string)Session["AlertMsg"] %></p>
+	        </div>
+        <% } Session["AlertMsg"] = null; %>
+        <!-- End of Alert Msg -->
 
         <!-- Start of slide show area -->
         <div id="SlideShowDiv" class="row">
