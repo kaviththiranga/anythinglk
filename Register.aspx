@@ -1,6 +1,22 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/anything.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <script type="text/javascript">
+        function usernamevalidate(src, args) {
+            $.ajax({
+                type: "POST",
+                url: "Register.aspx/isUsernameAvailable",
+                data: "{'username': '" + args.Value + "'}",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (msg) {
+                    args.IsValid = msg.d;
+                }
+            });
+        }
+        
+    </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
 </asp:Content>
@@ -38,6 +54,7 @@
                     Display="Dynamic">
                 </asp:RequiredFieldValidator>
                 <span class="help-inline">
+                    <asp:CustomValidator ID="CustomValidatorUserName" ControlToValidate="inputUsername" ClientValidationFunction="usernamevalidate" runat="server" ErrorMessage="This Username is already registered"></asp:CustomValidator>
                     <asp:Label ID="inputUsernameHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
                 </span>
             </div>

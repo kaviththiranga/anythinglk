@@ -121,7 +121,7 @@ text-decoration:none;
         </asp:GridView>
     </p>
     <p>
-        <asp:Button ID="Button6" runat="server" OnClick="Button6_Click" Text="Button" />
+        <asp:Button ID="Button1" meta:resourcekey="Button1" runat="server" OnClick="Button6_Click" Text="Button" />
     </p><br />
     
 </asp:Content>

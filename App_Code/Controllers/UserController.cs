@@ -46,4 +46,13 @@ public class UserController
 
         userDAO.insertOrUpdate(user);
     }
+
+    public static bool isUsernameAvailable(string username) {
+
+        if (getUserByUsername(username) == null) {
+            return true;
+        }
+
+        return false;
+    }
 }

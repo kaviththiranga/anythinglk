@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -23,6 +24,13 @@ public partial class Register : BasePage
         user.Contact = inputContact.Text;
 
         UserController.save(user);
+    }
+
+    [WebMethod]
+    public static bool isUsernameAvailable(string username) {
+
+       return UserController.isUsernameAvailable(username);
+       
     }
 
 }
