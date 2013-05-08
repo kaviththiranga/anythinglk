@@ -16,8 +16,20 @@
       <Column Name="Qty" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Total" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="PlacedOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="Deal_Order" Member="Deal" ThisKey="DealID" OtherKey="DealID" Type="Deal" IsForeignKey="true" />
       <Association Name="User_Order" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" />
+      <Association Name="Deal_Order" Member="Deal" ThisKey="DealID" OtherKey="DealID" Type="Deal" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Users" Member="Users">
+    <Type Name="User">
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="LastName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Contact" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Association Name="User_Order" Member="Orders" ThisKey="UserID" OtherKey="UserID" Type="Order" />
+      <Association Name="User_Administrator" Member="Administrators" ThisKey="UserID" OtherKey="UserID" Type="Administrator" />
     </Type>
   </Table>
   <Table Name="dbo.Deals" Member="Deals">
@@ -34,19 +46,18 @@
       <Column Name="Terms" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="OtherDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ImageURL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="PostedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Deal_Order" Member="Orders" ThisKey="DealID" OtherKey="DealID" Type="Order" />
       <Association Name="Category_Deal" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
+      <Association Name="Administrator_Deal" Member="Administrator" ThisKey="PostedBy" OtherKey="AdminID" Type="Administrator" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Users" Member="Users">
-    <Type Name="User">
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Email" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="FirstName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="LastName" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Contact" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="User_Order" Member="Orders" ThisKey="UserID" OtherKey="UserID" Type="Order" />
+  <Table Name="dbo.Administrator" Member="Administrators">
+    <Type Name="Administrator">
+      <Column Name="AdminID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Administrator_Deal" Member="Deals" ThisKey="AdminID" OtherKey="PostedBy" Type="Deal" />
+      <Association Name="User_Administrator" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
 </Database>

@@ -13,5 +13,7 @@ public class AdminController
 		//
 		// TODO: Add constructor logic here
 		//
+
+        Administrator admin = new Administrator();
 	}
 }

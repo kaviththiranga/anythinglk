@@ -10,7 +10,14 @@ public partial class UserProfile : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Request.Params["logout"] != null && UserController.isLoggedIn()) {
 
+            Session["AlertMsg"] = "Successfully Logged Out. Bye " + UserController.getCurrentUser().FirstName + " " + UserController.getCurrentUser().LastName + "! ";
+            Session["AlertMsgClass"] = "alert-success";
+
+            UserController.logout();
+            Response.Redirect("Default.aspx");
+        }
     }
 
 }

@@ -36,7 +36,7 @@ public partial class anything : System.Web.UI.MasterPage
         if (UserController.authenticate(inputEmailModal.Text, inputPasswordModal.Text)) {
             Session["AlertMsg"] = "Successfully Logged in. Welcome "+ UserController.getCurrentUser().FirstName+" "+UserController.getCurrentUser().LastName+"! ";
             Session["AlertMsgClass"] = "alert-success";
-            Response.Redirect("Default.aspx");
+            Response.Redirect(Request.RawUrl);
         }
 
         Session["AlertMsg"] = "Error. Check your credentials and try again.";

@@ -129,8 +129,10 @@
 						        		</a>
 						        	</li>
 						        	<li class="divider"></li>			        
-						        	<li><asp:Button ID="LogoutBtn" runat="server" Text="logout" OnClick="Logout_Click" />
+						        	<li><a href="UserProfile.aspx?logout=1">
 						        			<i class="icon-arrow-right" style="margin-right: 2px;"></i>
+                                            Logout
+                                        </a>
 						        	</li>
 								</ul> 
 							</div>

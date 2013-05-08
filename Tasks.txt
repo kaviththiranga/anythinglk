@@ -3,6 +3,7 @@ Registration Form Validations
 User Login
 Admin Add new Deal
 Ajax image loading
+iMAGE UPLOAD
 data base caching
 localization
 personlization
