@@ -40,7 +40,7 @@ public class AdminDAO : AbstractDAO
     {
 
         // This is an update
-        if (admin.UserID > 0)
+        if (admin.User.UserID > 0)
         {
             return submitChanges();
         }

@@ -1,0 +1,199 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="anythingadmin.master.cs" Inherits="Administrator_anythingadmin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="../bootstrap/css/font-awesome.css" rel="stylesheet" />
+    <link href="../bootstrap/css/customoverrides.css" rel="stylesheet" />
+    <script type="text/javascript" src="../bootstrap/js/JQuery.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+    
+    
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('.scrollup').fadeIn();
+                    } else {
+                        $('.scrollup').fadeOut();
+                    }
+                });
+
+                $('.scrollup').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+
+            });
+        })(jQuery);
+
+        (function ($) {
+            $(document).ready(function () {
+                $('#NavPanelDiv li').hover(function () {
+                    $(this).find('i').addClass('icon-large');
+                }, function () {
+                    $(this).find('i').removeClass('icon-large');
+                });
+
+
+            });
+        })(jQuery);
+    </script>
+    
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title></title>
+</head>
+<body>
+     <div id="PageDiv" class="container">
+
+        <form id="PageForm" runat="server">
+
+            <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3><asp:Literal ID="Literal10" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /> to Anything.lk</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail"><asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
+                            <div class="controls">
+                                <asp:TextBox ID="inputEmailModal"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword"><asp:Literal ID="Literal9" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
+                            <div class="controls">
+                                <asp:TextBox ID="inputPasswordModal" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">Close</a>
+                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" />
+                </div>
+            </div>
+        <!-- start of header -->
+
+        <% if (AdminController.isAdmin()) { %>
+        <div id="HeaderDiv" class="row well" style="">
+
+            <div id="LogoDiv" class="span3">
+                <img alt="log" src="images/logo.png" /><br />
+                <p style="font-size:medium;text-align:right;font-family:'Times New Roman';">Administration Interface</p>
+            </div>
+
+            <div id="BannerAreaDiv" class="span5">
+
+                <div id="BannerDiv" class="text-center">
+                    <asp:ContentPlaceHolder id="BannerPlaceHolder" runat="server">
+                        <p class="muted">bannners area</p>
+                    </asp:ContentPlaceHolder> 
+                </div>
+                           
+            </div>
+
+            <div id="RightTopDiv" class="span3">
+                
+                <div id="LoginInfoDiv" class="pull-right">
+
+                </div>
+                
+                  
+                <asp:ContentPlaceHolder id="CartInfoPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </div>
+        <!-- end of header -->
+
+        <!-- Start of NaviPanel Area -->
+  
+        <div id="NavPanelDiv" class="row">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a class="brand" href="#">Anything.lk</a>
+                    <ul class="nav">
+                        <li id="homenav"><a href="Default.aspx"><i class="icon-home "></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, HomeButtonLabel  %>" /></a></li>
+                        <li id="dailydealsnav"><a href="#"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a></li>
+                        <li id="storenav"><a href="#"><i class="icon-shopping-cart "></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></a></li>
+                        <li id="eventsnav"><a href="#"><i class="icon-calendar "></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a></li>
+                        <li id="travelnav"><a href="#"><i class="icon-plane "></i> <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a></li>
+                        <li id="booksnav"><a href="#"><i class="icon-book "></i> <asp:Literal ID="Literal6" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- End of NaviPanel Area -->
+
+        <!-- Start of Alert Msg -->
+        <% if ((string)Session["AlertMsg"] != null) { %>
+            <div class="alert <%= (string)Session["AlertMsgClass"] %>" style="margin-left: 30px;margin-right: 30px;">
+		        <a class="close" data-dismiss="alert">×</a> 
+	            <p><i class="icon-info-sign" style="margin-right: 5px;"></i><%= (string)Session["AlertMsg"] %></p>
+	        </div>
+        <% } Session["AlertMsg"] = null; %>
+        <!-- End of Alert Msg -->
+
+        <!-- Start of slide show area -->
+        <div id="SlideShowDiv" class="row">
+
+            <asp:ContentPlaceHolder id="SildeShowContentPlaceHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>        
+        </div>
+        <!-- End of slide show area -->
+
+        <!-- Start of the main content area -->
+        <div id="BodyContentDiv" class="row">
+
+            <!-- Start of content area -->
+            <div id="ContentArea" class="span10">
+                <div class="well">
+                <asp:ContentPlaceHolder id="ContentAreaPlaceHolder" runat="server">
+                
+                </asp:ContentPlaceHolder> 
+                </div>
+            </div> 
+            <!-- End of content area -->
+            
+            <!-- start of right panel -->
+            <div id="RightPanel" class="span2">
+                <div>
+                <asp:ContentPlaceHolder id="RightPanelPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>  
+                </div>      
+            </div>
+            <!-- end of right panel -->    
+
+        </div> 
+        <!-- End of the main content area -->
+
+        <!-- start of footer -->
+        <div id="Footer" class="row well" style="margin-top:20px;">
+            <div class="span3">
+                <a href="Terms.aspx">Terms & Conditions</a>
+            </div>
+        </div>
+        <!-- End of footer -->
+         <% } else { %>
+
+            Please login to use administration application.
+            <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-link"><asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /></a>
+
+         <% } %>
+        </form>
+    </div>
+    <a href="#" class="scrollup">Scroll</a>
+    
+</body>
+</html>

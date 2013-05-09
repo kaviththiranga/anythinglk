@@ -8,12 +8,36 @@ using System.Web;
 /// </summary>
 public class AdminController
 {
-	public AdminController()
+    static AdminDAO adminDAO = new AdminDAO();
+	static AdminController()
 	{
-		//
-		// TODO: Add constructor logic here
-		//
 
-        Administrator admin = new Administrator();
 	}
+
+    public static bool authenticate(string email, string password)
+    {
+
+        Administrator admin = adminDAO.getAdminByEmail(email);
+
+        if (admin != null && admin.User.Password.Equals(password))
+        {
+
+            HttpContext.Current.Session["CurrentUser"] = admin;
+
+            return true;
+        }
+
+        return false;
+    }
+
+    public static bool isAdmin() {
+
+        if (HttpContext.Current.Session["CurrentUser"] != null && HttpContext.Current.Session["CurrentUser"] is Administrator) {
+            return true;
+        }
+
+        return false;
+    }
+
+
 }
