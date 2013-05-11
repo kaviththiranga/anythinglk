@@ -22,7 +22,7 @@ public class AdminController
         if (admin != null && admin.User.Password.Equals(password))
         {
 
-            HttpContext.Current.Session["CurrentUser"] = admin;
+            HttpContext.Current.Session["CurrentAdmin"] = admin;
 
             return true;
         }
@@ -32,11 +32,18 @@ public class AdminController
 
     public static bool isAdmin() {
 
-        if (HttpContext.Current.Session["CurrentUser"] != null && HttpContext.Current.Session["CurrentUser"] is Administrator) {
+        if (HttpContext.Current.Session["CurrentAdmin"] != null && HttpContext.Current.Session["CurrentAdmin"] is Administrator)
+        {
             return true;
         }
 
         return false;
+    }
+
+    public static Administrator getCurrentAdmin() {
+
+        return (Administrator)HttpContext.Current.Session["CurrentAdmin"];
+    
     }
 
 

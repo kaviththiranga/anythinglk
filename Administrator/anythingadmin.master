@@ -76,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-dismiss="modal" class="btn">Close</a>
-                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" />
+                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" OnClick="SigninButtonModal_Click"/>
                 </div>
             </div>
         <!-- start of header -->
@@ -121,12 +121,12 @@
                 <div class="navbar-inner">
                     <a class="brand" href="#">Anything.lk</a>
                     <ul class="nav">
-                        <li id="homenav"><a href="Default.aspx"><i class="icon-home "></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, HomeButtonLabel  %>" /></a></li>
-                        <li id="dailydealsnav"><a href="#"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a></li>
-                        <li id="storenav"><a href="#"><i class="icon-shopping-cart "></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></a></li>
-                        <li id="eventsnav"><a href="#"><i class="icon-calendar "></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a></li>
-                        <li id="travelnav"><a href="#"><i class="icon-plane "></i> <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a></li>
-                        <li id="booksnav"><a href="#"><i class="icon-book "></i> <asp:Literal ID="Literal6" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></a></li>
+                        <li id="homenav"><a href="Default.aspx"><i class="icon-home"></i> <asp:Literal ID="Literal2" runat="server" Text="Dashboard" /></a></li>
+                        <li id="dailydealsnav"><a href="#"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="" /></a></li>
+                        <li id="storenav"><a href="#"><i class="icon-shopping-cart "></i> <asp:Literal ID="Literal3" runat="server" Text="" /></a></li>
+                        <li id="eventsnav"><a href="#"><i class="icon-calendar "></i> <asp:Literal ID="Literal4" runat="server" Text="" /></a></li>
+                        <li id="travelnav"><a href="#"><i class="icon-plane "></i> <asp:Literal ID="Literal5" runat="server" Text="" /></a></li>
+                        <li id="booksnav"><a href="#"><i class="icon-book "></i> <asp:Literal ID="Literal6" runat="server" Text="" /></a></li>
                     </ul>
                 </div>
             </div>

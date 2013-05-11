@@ -6,44 +6,7 @@
 <head runat="server">
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link href="bootstrap/css/font-awesome.css" rel="stylesheet" />
-    <link href="bootstrap/css/customoverrides.css" rel="stylesheet" />
-    <script type="text/javascript" src="bootstrap/js/JQuery.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script>
-    
-    
-    <script type="text/javascript">
-        (function ($) {
-            $(document).ready(function () {
-
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 100) {
-                        $('.scrollup').fadeIn();
-                    } else {
-                        $('.scrollup').fadeOut();
-                    }
-                });
-
-                $('.scrollup').click(function () {
-                    $("html, body").animate({ scrollTop: 0 }, 600);
-                    return false;
-                });
-
-            });
-        })(jQuery);
-
-        (function ($) {
-            $(document).ready(function () {
-                $('#NavPanelDiv li').hover(function () {                   
-                    $(this).find('i').addClass('icon-large');
-                }, function () {
-                    $(this).find('i').removeClass('icon-large');
-                });
-
-                
-            });
-        })(jQuery);
-    </script>
-    
+    <link href="bootstrap/css/customoverrides.css" rel="stylesheet" /> 
     <asp:ContentPlaceHolder id="head" runat="server">
     </asp:ContentPlaceHolder>
     <title></title>
@@ -230,6 +193,45 @@
         </form>
     </div>
     <a href="#" class="scrollup">Scroll</a>
+    
+    <script type="text/javascript" src="bootstrap/js/JQuery.js"></script>
+    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> 
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('.scrollup').fadeIn();
+                    } else {
+                        $('.scrollup').fadeOut();
+                    }
+                });
+
+                $('.scrollup').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+
+            });
+        })(jQuery);
+
+        (function ($) {
+            $(document).ready(function () {
+                $('#NavPanelDiv li').hover(function () {
+                    $(this).find('i').addClass('icon-large');
+                }, function () {
+                    $(this).find('i').removeClass('icon-large');
+                });
+
+
+            });
+        })(jQuery);
+    </script>
+
+    <asp:ContentPlaceHolder id="FooterImports" runat="server">
+        
+    </asp:ContentPlaceHolder> 
     
 </body>
 </html>

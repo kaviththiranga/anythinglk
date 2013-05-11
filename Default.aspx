@@ -6,90 +6,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     
     <style>
+        div.bgcarousel{background:#000 url(ajaxload.gif) center center no-repeat;width:700px;height:500px}
+        img.navbutton{opacity:0.7;margin:5px}
+        div.slide{background-color:#000;background-position:center center;background-repeat:no-repeat;background-size:cover;color:#000}
+        div.slide div.desc{position:absolute;color:#FFF;left:40px;top:100px;width:200px;font:bold 16px sans-serif, Arial;text-shadow:0 -1px 1px #8a8a8a;z-index:5;padding:10px}
+        div.slide div.desc h2{font-size:150%;margin:0}
+        div.slide div.desc a{color:#FF0;text-decoration:none}
+    </style>
 
-div.bgcarousel{ /* CSS for main carousel container */
-background: black url(ajaxload.gif) center center no-repeat; /* loading gif while caoursel is loading */
-width:700px; /* default dimensions of carousel */
-height:500px;
-}
-
-img.navbutton{ /* CSS for the nav buttons */
-margin:5px;
-opacity:0.7;
-}
-
-div.slide{ /* CSS for each image's DIV container within main container */
-background-color: black;
-background-position: center center; /* center image within carousel */
-background-repeat: no-repeat;
-background-size: cover; /* CSS3 property to scale image within container? "cover" or "contain" */
-color: black;
-}
-
-div.selectedslide{ /* CSS for currently selected slide */
-}
-
-div.slide div.desc{ /* DIV that contains the textual description inside .slide */
-position: absolute;
-color: white;
-left: 40px;
-top: 100px;
-width:200px;
-padding: 10px;
-font: bold 16px sans-serif, Arial;
-text-shadow: 0 -1px 1px #8a8a8a; /* CSS3 text shadow */
-z-index:5;
-}
-
-div.selectedslide div.desc{ /* CSS for currently selected slide's desc div */
-}
-
-div.slide div.desc h2{
-font-size:150%;
-margin:0;
-}
-
-div.slide div.desc a{
-color:yellow;
-text-decoration:none;
-}
-
-</style>
-
-<script src="bootstrap/js/bgcarousel.js" type="text/javascript">
-
-</script>
-    <script type="text/javascript">
-     (function ($) {
-            $(document).ready(function () {
-                $('#homenav').addClass('active');
-            });
-        })(jQuery);
-    </script>
-
-<script type="text/javascript">
-
-    var firstbgcarousel = new bgCarousel({
-        wrapperid: 'imageslider', //ID of blank DIV on page to house carousel
-        imagearray: [
-            ['images/slides/baba.jpg', '<h2></h2>'], //["image_path", "optional description"]
-            ['images/slides/biona.jpg', '<h2></h2>'],
-            ['images/slides/funboxlk.jpg', ''],
-            ['images/slides/mmi.jpg', ''],
-            ['images/slides/samasungs4.jpg', ''],
-            ['images/slides/starpoints.jpg', ''],
-            ['images/slides/Top-Banner2.jpg', ''],
-            ['images/slides/litrogas.jpg', ''] //<--no trailing comma after very last image element!
-        ],
-        displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true },
-        navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], // path to nav images
-        activeslideclass: 'selectedslide', // CSS class that gets added to currently shown DIV slide
-        orientation: 'h', //Valid values: "h" or "v"
-        persist: true, //remember last viewed slide and recall within same session?
-        slideduration: 500 //transition duration (milliseconds)
-    });
-
-</script>
+    
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
     
@@ -136,3 +61,39 @@ text-decoration:none;
 
 </asp:Content>
 
+<asp:Content ID="Content7" ContentPlaceHolderID="FooterImports" Runat="Server">
+    <script src="bootstrap/js/bgcarousel.js" type="text/javascript">
+
+    </script>
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+                $('#homenav').addClass('active');
+            });
+        })(jQuery);
+    </script>
+
+    <script type="text/javascript">
+
+        var firstbgcarousel = new bgCarousel({
+            wrapperid: 'imageslider', //ID of blank DIV on page to house carousel
+            imagearray: [
+                ['images/slides/baba.jpg', '<h2></h2>'], //["image_path", "optional description"]
+                ['images/slides/biona.jpg', '<h2></h2>'],
+                ['images/slides/funboxlk.jpg', ''],
+                ['images/slides/mmi.jpg', ''],
+                ['images/slides/samasungs4.jpg', ''],
+                ['images/slides/starpoints.jpg', ''],
+                ['images/slides/Top-Banner2.jpg', ''],
+                ['images/slides/litrogas.jpg', ''] //<--no trailing comma after very last image element!
+            ],
+            displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true },
+            navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], // path to nav images
+            activeslideclass: 'selectedslide', // CSS class that gets added to currently shown DIV slide
+            orientation: 'h', //Valid values: "h" or "v"
+            persist: true, //remember last viewed slide and recall within same session?
+            slideduration: 500 //transition duration (milliseconds)
+        });
+
+    </script>
+</asp:Content>
