@@ -1,0 +1,193 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="anythingadminBackup.master.cs" Inherits="Administrator_anythingadmin" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <link href="../bootstrap/css/Admin.css" rel="stylesheet" />
+    <link href="../bootstrap/css/font-awesome.css" rel="stylesheet" />
+    <link href="../bootstrap/css/customoverrides.css" rel="stylesheet" />
+    <script type="text/javascript" src="../bootstrap/js/JQuery.js"></script>
+    <script type="text/javascript" src="../bootstrap/js/bootstrap.js"></script>
+    
+    
+    <script type="text/javascript">
+        (function ($) {
+            $(document).ready(function () {
+
+                $(window).scroll(function () {
+                    if ($(this).scrollTop() > 100) {
+                        $('.scrollup').fadeIn();
+                    } else {
+                        $('.scrollup').fadeOut();
+                    }
+                });
+
+                $('.scrollup').click(function () {
+                    $("html, body").animate({ scrollTop: 0 }, 600);
+                    return false;
+                });
+
+            });
+        })(jQuery);
+
+        (function ($) {
+            $(document).ready(function () {
+                $('#NavPanelDiv li').hover(function () {
+                    $(this).find('i').addClass('icon-large');
+                }, function () {
+                    $(this).find('i').removeClass('icon-large');
+                });
+
+
+            });
+        })(jQuery);
+    </script>
+    
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <title></title>
+</head>
+<body>
+     <div id="PageDiv" class="container">
+
+        <form id="PageForm" runat="server">
+
+            <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3><asp:Literal ID="Literal10" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /> to Anything.lk</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-horizontal">
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail"><asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
+                            <div class="controls">
+                                <asp:TextBox ID="inputEmailModal"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword"><asp:Literal ID="Literal9" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
+                            <div class="controls">
+                                <asp:TextBox ID="inputPasswordModal" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" data-dismiss="modal" class="btn">Close</a>
+                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" OnClick="SigninButtonModal_Click"/>
+                </div>
+            </div>
+        <!-- start of header -->
+
+        <% if (AdminController.isAdmin()) { %>
+        <div id="HeaderDiv" class="row" style="">
+           
+        </div>
+        <!-- end of header -->
+
+        <!-- Start of NaviPanel Area -->
+  
+        <div id="NavPanelDiv" class="row">
+            
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <div class="brand">Administrator</div>
+                    <ul class="nav">
+                        <li id="homenav"><a href="Default.aspx"><i class="icon-home"></i>Dashboard</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-user"></i>Users <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Manage Customers</a></li>
+                                <li><a href="#">Manage Admins</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-list"></i>Deals <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Create a Deal</a></li>
+                                <li><a href="#">Manage Deals</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-shopping-cart"></i>Orders <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Manage Orders</a></li>
+                                <li><a href="#">Search Orders</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- End of NaviPanel Area -->
+
+        <!-- Start of Alert Msg -->
+        <% if ((string)Session["AlertMsg"] != null) { %>
+            <div class="alert <%= (string)Session["AlertMsgClass"] %>" style="margin-left: 30px;margin-right: 30px;">
+		        <a class="close" data-dismiss="alert">×</a> 
+	            <p><i class="icon-info-sign" style="margin-right: 5px;"></i><%= (string)Session["AlertMsg"] %></p>
+	        </div>
+        <% } Session["AlertMsg"] = null; %>
+        <!-- End of Alert Msg -->
+
+        <!-- Start of slide show area -->
+        <div id="SlideShowDiv" class="row">
+
+            <asp:ContentPlaceHolder id="SildeShowContentPlaceHolder" runat="server">
+        
+            </asp:ContentPlaceHolder>        
+        </div>
+        <!-- End of slide show area -->
+
+        <!-- Start of the main content area -->
+        <div id="BodyContentDiv" class="row">
+
+            <!-- Start of content area -->
+            <div id="ContentArea" class="span10">
+                <div class="well">
+                <asp:ContentPlaceHolder id="ContentAreaPlaceHolder" runat="server">
+                
+                </asp:ContentPlaceHolder> 
+                </div>
+            </div> 
+            <!-- End of content area -->
+            
+            <!-- start of right panel -->
+            <div id="RightPanel" class="span2">
+                <div>
+                <asp:ContentPlaceHolder id="RightPanelPlaceHolder" runat="server">
+        
+                </asp:ContentPlaceHolder>  
+                </div>      
+            </div>
+            <!-- end of right panel -->    
+
+        </div> 
+        <!-- End of the main content area -->
+
+        <!-- start of footer -->
+        <div id="Footer" class="row well" style="margin-top:20px;">
+            <div class="span3">
+                <a href="Terms.aspx">Terms & Conditions</a>
+            </div>
+        </div>
+        <!-- End of footer -->
+         <% } else { %>
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <div class="span12 well">
+                <div class="text-center"> 
+                                       
+                    <p class="text-warning">Please login to use administration application.</p><br />
+                    <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-link"><asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /></a>
+                </div>
+            </div>
+         <% } %>
+        </form>
+    </div>
+    <a href="#" class="scrollup">Scroll</a>
+    
+</body>
+</html>

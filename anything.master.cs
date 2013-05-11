@@ -10,7 +10,28 @@ public partial class anything : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        List<String> themeList = new List<string>() ;
+
+        if (!Page.IsPostBack) {
+            themeList.Add("Select Theme...");
+            themeList.Add("Cyborg");
+            themeList.Add("Amelia");
+            themeList.Add("Slate");
+            themeList.Add("Cerulean");
+            themeList.Add("simplex");
+            themeList.Add("Readable");
+            themeList.Add("Journal");
+            themeList.Add("SpaceLab");
+            themeList.Add("Spruce");
+            themeList.Add("SuperHero");
+            themeList.Add("United");
+            themeList.Add("Cosmo");
+            
+
+            ThemeDropDown.DataSource = themeList;
+            ThemeDropDown.DataBind();
+        }
+       
     }
     protected void Button4_Click(object sender, EventArgs e)
     {
@@ -51,5 +72,10 @@ public partial class anything : System.Web.UI.MasterPage
         UserController.logout();
         Response.Redirect("Default.aspx");
     }
-    
+
+    protected void ThemeDropDown_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        Session["Theme"] = ThemeDropDown.SelectedValue;
+        Response.Redirect(Request.RawUrl);
+    }
 }

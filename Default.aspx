@@ -66,34 +66,12 @@
 
     </script>
     <script type="text/javascript">
-        (function ($) {
-            $(document).ready(function () {
-                $('#homenav').addClass('active');
-            });
-        })(jQuery);
+        (function ($) { $(document).ready(function () { $('#homenav').addClass('active') }) })(jQuery);
     </script>
 
     <script type="text/javascript">
-
         var firstbgcarousel = new bgCarousel({
-            wrapperid: 'imageslider', //ID of blank DIV on page to house carousel
-            imagearray: [
-                ['images/slides/baba.jpg', '<h2></h2>'], //["image_path", "optional description"]
-                ['images/slides/biona.jpg', '<h2></h2>'],
-                ['images/slides/funboxlk.jpg', ''],
-                ['images/slides/mmi.jpg', ''],
-                ['images/slides/samasungs4.jpg', ''],
-                ['images/slides/starpoints.jpg', ''],
-                ['images/slides/Top-Banner2.jpg', ''],
-                ['images/slides/litrogas.jpg', ''] //<--no trailing comma after very last image element!
-            ],
-            displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true },
-            navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], // path to nav images
-            activeslideclass: 'selectedslide', // CSS class that gets added to currently shown DIV slide
-            orientation: 'h', //Valid values: "h" or "v"
-            persist: true, //remember last viewed slide and recall within same session?
-            slideduration: 500 //transition duration (milliseconds)
+            wrapperid: 'imageslider', imagearray: [['images/slides/baba.jpg', '<h2></h2>'], ['images/slides/biona.jpg', '<h2></h2>'], ['images/slides/funboxlk.jpg', ''], ['images/slides/mmi.jpg', ''], ['images/slides/samasungs4.jpg', ''], ['images/slides/starpoints.jpg', ''], ['images/slides/Top-Banner2.jpg', ''], ['images/slides/litrogas.jpg', '']], displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true }, navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], activeslideclass: 'selectedslide', orientation: 'h', persist: true, slideduration: 500
         });
-
     </script>
 </asp:Content>
