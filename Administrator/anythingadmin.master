@@ -82,44 +82,18 @@
         <!-- start of header -->
 
         <% if (AdminController.isAdmin()) { %>
-        <div id="HeaderDiv" class="row well" style="">
-
-            <div id="LogoDiv" class="span3">
-                <img alt="log" src="images/logo.png" /><br />
-                <p style="font-size:medium;text-align:right;font-family:'Times New Roman';">Administration Interface</p>
-            </div>
-
-            <div id="BannerAreaDiv" class="span5">
-
-                <div id="BannerDiv" class="text-center">
-                    <asp:ContentPlaceHolder id="BannerPlaceHolder" runat="server">
-                        <p class="muted">bannners area</p>
-                    </asp:ContentPlaceHolder> 
-                </div>
-                           
-            </div>
-
-            <div id="RightTopDiv" class="span3">
-                
-                <div id="LoginInfoDiv" class="pull-right">
-
-                </div>
-                
-                  
-                <asp:ContentPlaceHolder id="CartInfoPlaceHolder" runat="server">
-        
-                </asp:ContentPlaceHolder>
-            </div>
-
+        <div id="HeaderDiv" class="row" style="">
+           
         </div>
         <!-- end of header -->
 
         <!-- Start of NaviPanel Area -->
   
         <div id="NavPanelDiv" class="row">
+            
             <div class="navbar">
                 <div class="navbar-inner">
-                    <a class="brand" href="#">Anything.lk</a>
+                    <div class="brand">Administrator</div>
                     <ul class="nav">
                         <li id="homenav"><a href="Default.aspx"><i class="icon-home"></i> <asp:Literal ID="Literal2" runat="server" Text="Dashboard" /></a></li>
                         <li id="dailydealsnav"><a href="#"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="" /></a></li>
@@ -186,10 +160,14 @@
         </div>
         <!-- End of footer -->
          <% } else { %>
-
-            Please login to use administration application.
-            <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-link"><asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /></a>
-
+            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+            <div class="span12 well">
+                <div class="text-center"> 
+                                       
+                    <p class="text-warning">Please login to use administration application.</p><br />
+                    <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-link"><asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /></a>
+                </div>
+            </div>
          <% } %>
         </form>
     </div>
