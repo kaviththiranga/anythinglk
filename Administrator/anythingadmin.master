@@ -145,13 +145,17 @@
 	                    </div>
                     <% } Session["AlertMsg"] = null; %>
                     <!-- End of Alert Msg -->
+                    <div class="row-fluid">
+                        <asp:ContentPlaceHolder id="ContentWrapper" runat="server">
 
-                    <asp:ContentPlaceHolder id="ContentWrapper" runat="server">
-
-                    </asp:ContentPlaceHolder>
-                    <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
-                    </asp:ContentPlaceHolder>
-
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="content-widgets light-gray">
+                            <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+                            </asp:ContentPlaceHolder>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- End Main Wrapper-->

@@ -11,42 +11,46 @@
         </DataControls>
     </asp:DynamicDataManager>
 
-    <h2 class="DDSubHeader">Entry from table <%= table.DisplayName %></h2>
+    <<div class="widget-head orange"><h3>Entry from table <%= table.DisplayName %></h3></div>
 
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
-            <asp:ValidationSummary ID="ValidationSummary1" runat="server" EnableClientScript="true"
-                HeaderText="List of validation errors" CssClass="DDValidator" />
-            <asp:DynamicValidator runat="server" ID="DetailsViewValidator" ControlToValidate="FormView1" Display="None" CssClass="DDValidator" />
+                <div class="widget-container">
+                <asp:ValidationSummary ID="ValidationSummary1" runat="server" EnableClientScript="true"
+                    HeaderText="List of validation errors" CssClass="DDValidator" />
+                <asp:DynamicValidator runat="server" ID="DetailsViewValidator" ControlToValidate="FormView1" Display="None" CssClass="DDValidator" />
 
-            <asp:FormView runat="server" ID="FormView1" DataSourceID="DetailsDataSource" OnItemDeleted="FormView1_ItemDeleted" RenderOuterTable="false">
-                <ItemTemplate>
-                    <table id="detailsTable" class="DDDetailsTable" cellpadding="6">
-                        <asp:DynamicEntity runat="server" />
-                        <tr class="td">
-                            <td colspan="2">
-                                <asp:DynamicHyperLink runat="server" Action="Edit" Text="Edit" />
-                                <asp:LinkButton runat="server" CommandName="Delete" Text="Delete"
-                                    OnClientClick='return confirm("Are you sure you want to delete this item?");' />
-                            </td>
-                        </tr>
-                    </table>
-                </ItemTemplate>
-                <EmptyDataTemplate>
-                    <div class="DDNoItem">No such item.</div>
-                </EmptyDataTemplate>
-            </asp:FormView>
+                <asp:FormView runat="server" ID="FormView1" DataSourceID="DetailsDataSource" OnItemDeleted="FormView1_ItemDeleted" RenderOuterTable="false">
+                    <ItemTemplate>
+                        <table id="detailsTable" class="table table-striped">
+                            <asp:DynamicEntity runat="server" />
+                            <tr class="td">
+                                <td colspan="2">
+                                    <asp:DynamicHyperLink runat="server" CssClass="btn btn-info" Action="Edit" Text="Edit" />
+                                    <asp:LinkButton runat="server" CommandName="Delete" CssClass="btn btn-error" Text="Delete"
+                                        OnClientClick='return confirm("Are you sure you want to delete this item?");' />
+                                </td>
+                            </tr>
+                        </table>
+                    </ItemTemplate>
+                    <EmptyDataTemplate>
+                        <div class="DDNoItem">No such item.</div>
+                    </EmptyDataTemplate>
+                </asp:FormView>
 
-            <asp:LinqDataSource ID="DetailsDataSource" runat="server" EnableDelete="true" />
+                <asp:LinqDataSource ID="DetailsDataSource" runat="server" EnableDelete="true" />
 
-            <asp:QueryExtender TargetControlID="DetailsDataSource" ID="DetailsQueryExtender" runat="server">
-                <asp:DynamicRouteExpression />
-            </asp:QueryExtender>
+                <asp:QueryExtender TargetControlID="DetailsDataSource" ID="DetailsQueryExtender" runat="server">
+                    <asp:DynamicRouteExpression />
+                </asp:QueryExtender>
 
-            <br />
+                <br />
 
-            <div class="DDBottomHyperLink">
-                <asp:DynamicHyperLink ID="ListHyperLink" runat="server" Action="List">Show all items</asp:DynamicHyperLink>
+                <div class="DDBottomHyperLink">
+                    <asp:DynamicHyperLink ID="ListHyperLink" runat="server" CssClass="btn btn-info" Action="List">Show all items</asp:DynamicHyperLink>
+                </div>
+                    <br />
+                    <br />
             </div>
         </ContentTemplate>
     </asp:UpdatePanel>
