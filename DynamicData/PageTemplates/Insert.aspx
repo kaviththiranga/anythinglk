@@ -24,6 +24,7 @@
                     <InsertItemTemplate>
                         <table id="detailsTable" class="table table-striped" >
                             <asp:DynamicEntity runat="server" Mode="Insert" />
+                            
                             <tr class="td">
                                 <td colspan="2">
                                     <asp:LinkButton CssClass="btn btn-sucess" runat="server" CommandName="Insert" Text="Insert" />

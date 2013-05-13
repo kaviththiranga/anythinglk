@@ -38,12 +38,12 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertUser(User instance);
   partial void UpdateUser(User instance);
   partial void DeleteUser(User instance);
-  partial void InsertDeal(Deal instance);
-  partial void UpdateDeal(Deal instance);
-  partial void DeleteDeal(Deal instance);
   partial void InsertAdministrator(Administrator instance);
   partial void UpdateAdministrator(Administrator instance);
   partial void DeleteAdministrator(Administrator instance);
+  partial void InsertDeal(Deal instance);
+  partial void UpdateDeal(Deal instance);
+  partial void DeleteDeal(Deal instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -100,19 +100,19 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Deal> Deals
-	{
-		get
-		{
-			return this.GetTable<Deal>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Administrator> Administrators
 	{
 		get
 		{
 			return this.GetTable<Administrator>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Deal> Deals
+	{
+		get
+		{
+			return this.GetTable<Deal>();
 		}
 	}
 }
@@ -757,466 +757,6 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Deals")]
-public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _DealID;
-	
-	private int _CatID;
-	
-	private string _Title;
-	
-	private double _Value;
-	
-	private double _DiscountRate;
-	
-	private System.DateTime _ExpiresOn;
-	
-	private byte _AllowMultiplePurchase;
-	
-	private byte _Limited;
-	
-	private System.Nullable<int> _NoOfVouchers;
-	
-	private string _Terms;
-	
-	private string _OtherDesc;
-	
-	private string _ImageURL;
-	
-	private int _PostedBy;
-	
-	private EntitySet<Order> _Orders;
-	
-	private EntityRef<Category> _Category;
-	
-	private EntityRef<Administrator> _Administrator;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDealIDChanging(int value);
-    partial void OnDealIDChanged();
-    partial void OnCatIDChanging(int value);
-    partial void OnCatIDChanged();
-    partial void OnTitleChanging(string value);
-    partial void OnTitleChanged();
-    partial void OnValueChanging(double value);
-    partial void OnValueChanged();
-    partial void OnDiscountRateChanging(double value);
-    partial void OnDiscountRateChanged();
-    partial void OnExpiresOnChanging(System.DateTime value);
-    partial void OnExpiresOnChanged();
-    partial void OnAllowMultiplePurchaseChanging(byte value);
-    partial void OnAllowMultiplePurchaseChanged();
-    partial void OnLimitedChanging(byte value);
-    partial void OnLimitedChanged();
-    partial void OnNoOfVouchersChanging(System.Nullable<int> value);
-    partial void OnNoOfVouchersChanged();
-    partial void OnTermsChanging(string value);
-    partial void OnTermsChanged();
-    partial void OnOtherDescChanging(string value);
-    partial void OnOtherDescChanged();
-    partial void OnImageURLChanging(string value);
-    partial void OnImageURLChanged();
-    partial void OnPostedByChanging(int value);
-    partial void OnPostedByChanged();
-    #endregion
-	
-	public Deal()
-	{
-		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
-		this._Category = default(EntityRef<Category>);
-		this._Administrator = default(EntityRef<Administrator>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int DealID
-	{
-		get
-		{
-			return this._DealID;
-		}
-		set
-		{
-			if ((this._DealID != value))
-			{
-				this.OnDealIDChanging(value);
-				this.SendPropertyChanging();
-				this._DealID = value;
-				this.SendPropertyChanged("DealID");
-				this.OnDealIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatID", DbType="Int NOT NULL")]
-	public int CatID
-	{
-		get
-		{
-			return this._CatID;
-		}
-		set
-		{
-			if ((this._CatID != value))
-			{
-				if (this._Category.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnCatIDChanging(value);
-				this.SendPropertyChanging();
-				this._CatID = value;
-				this.SendPropertyChanged("CatID");
-				this.OnCatIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-	public string Title
-	{
-		get
-		{
-			return this._Title;
-		}
-		set
-		{
-			if ((this._Title != value))
-			{
-				this.OnTitleChanging(value);
-				this.SendPropertyChanging();
-				this._Title = value;
-				this.SendPropertyChanged("Title");
-				this.OnTitleChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Float NOT NULL")]
-	public double Value
-	{
-		get
-		{
-			return this._Value;
-		}
-		set
-		{
-			if ((this._Value != value))
-			{
-				this.OnValueChanging(value);
-				this.SendPropertyChanging();
-				this._Value = value;
-				this.SendPropertyChanged("Value");
-				this.OnValueChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountRate", DbType="Float NOT NULL")]
-	public double DiscountRate
-	{
-		get
-		{
-			return this._DiscountRate;
-		}
-		set
-		{
-			if ((this._DiscountRate != value))
-			{
-				this.OnDiscountRateChanging(value);
-				this.SendPropertyChanging();
-				this._DiscountRate = value;
-				this.SendPropertyChanged("DiscountRate");
-				this.OnDiscountRateChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresOn", DbType="DateTime NOT NULL")]
-	public System.DateTime ExpiresOn
-	{
-		get
-		{
-			return this._ExpiresOn;
-		}
-		set
-		{
-			if ((this._ExpiresOn != value))
-			{
-				this.OnExpiresOnChanging(value);
-				this.SendPropertyChanging();
-				this._ExpiresOn = value;
-				this.SendPropertyChanged("ExpiresOn");
-				this.OnExpiresOnChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowMultiplePurchase", DbType="TinyInt NOT NULL")]
-	public byte AllowMultiplePurchase
-	{
-		get
-		{
-			return this._AllowMultiplePurchase;
-		}
-		set
-		{
-			if ((this._AllowMultiplePurchase != value))
-			{
-				this.OnAllowMultiplePurchaseChanging(value);
-				this.SendPropertyChanging();
-				this._AllowMultiplePurchase = value;
-				this.SendPropertyChanged("AllowMultiplePurchase");
-				this.OnAllowMultiplePurchaseChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Limited", DbType="TinyInt NOT NULL")]
-	public byte Limited
-	{
-		get
-		{
-			return this._Limited;
-		}
-		set
-		{
-			if ((this._Limited != value))
-			{
-				this.OnLimitedChanging(value);
-				this.SendPropertyChanging();
-				this._Limited = value;
-				this.SendPropertyChanged("Limited");
-				this.OnLimitedChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoOfVouchers", DbType="Int")]
-	public System.Nullable<int> NoOfVouchers
-	{
-		get
-		{
-			return this._NoOfVouchers;
-		}
-		set
-		{
-			if ((this._NoOfVouchers != value))
-			{
-				this.OnNoOfVouchersChanging(value);
-				this.SendPropertyChanging();
-				this._NoOfVouchers = value;
-				this.SendPropertyChanged("NoOfVouchers");
-				this.OnNoOfVouchersChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Terms", DbType="NVarChar(MAX)")]
-	public string Terms
-	{
-		get
-		{
-			return this._Terms;
-		}
-		set
-		{
-			if ((this._Terms != value))
-			{
-				this.OnTermsChanging(value);
-				this.SendPropertyChanging();
-				this._Terms = value;
-				this.SendPropertyChanged("Terms");
-				this.OnTermsChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherDesc", DbType="NVarChar(MAX)")]
-	public string OtherDesc
-	{
-		get
-		{
-			return this._OtherDesc;
-		}
-		set
-		{
-			if ((this._OtherDesc != value))
-			{
-				this.OnOtherDescChanging(value);
-				this.SendPropertyChanging();
-				this._OtherDesc = value;
-				this.SendPropertyChanged("OtherDesc");
-				this.OnOtherDescChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageURL", DbType="VarChar(MAX)")]
-	public string ImageURL
-	{
-		get
-		{
-			return this._ImageURL;
-		}
-		set
-		{
-			if ((this._ImageURL != value))
-			{
-				this.OnImageURLChanging(value);
-				this.SendPropertyChanging();
-				this._ImageURL = value;
-				this.SendPropertyChanged("ImageURL");
-				this.OnImageURLChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostedBy", DbType="Int NOT NULL")]
-	public int PostedBy
-	{
-		get
-		{
-			return this._PostedBy;
-		}
-		set
-		{
-			if ((this._PostedBy != value))
-			{
-				if (this._Administrator.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnPostedByChanging(value);
-				this.SendPropertyChanging();
-				this._PostedBy = value;
-				this.SendPropertyChanged("PostedBy");
-				this.OnPostedByChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_Order", Storage="_Orders", ThisKey="DealID", OtherKey="DealID")]
-	public EntitySet<Order> Orders
-	{
-		get
-		{
-			return this._Orders;
-		}
-		set
-		{
-			this._Orders.Assign(value);
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Deal", Storage="_Category", ThisKey="CatID", OtherKey="CatID", IsForeignKey=true)]
-	public Category Category
-	{
-		get
-		{
-			return this._Category.Entity;
-		}
-		set
-		{
-			Category previousValue = this._Category.Entity;
-			if (((previousValue != value) 
-						|| (this._Category.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Category.Entity = null;
-					previousValue.Deals.Remove(this);
-				}
-				this._Category.Entity = value;
-				if ((value != null))
-				{
-					value.Deals.Add(this);
-					this._CatID = value.CatID;
-				}
-				else
-				{
-					this._CatID = default(int);
-				}
-				this.SendPropertyChanged("Category");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administrator_Deal", Storage="_Administrator", ThisKey="PostedBy", OtherKey="AdminID", IsForeignKey=true)]
-	public Administrator Administrator
-	{
-		get
-		{
-			return this._Administrator.Entity;
-		}
-		set
-		{
-			Administrator previousValue = this._Administrator.Entity;
-			if (((previousValue != value) 
-						|| (this._Administrator.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Administrator.Entity = null;
-					previousValue.Deals.Remove(this);
-				}
-				this._Administrator.Entity = value;
-				if ((value != null))
-				{
-					value.Deals.Add(this);
-					this._PostedBy = value.AdminID;
-				}
-				else
-				{
-					this._PostedBy = default(int);
-				}
-				this.SendPropertyChanged("Administrator");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_Orders(Order entity)
-	{
-		this.SendPropertyChanging();
-		entity.Deal = this;
-	}
-	
-	private void detach_Orders(Order entity)
-	{
-		this.SendPropertyChanging();
-		entity.Deal = null;
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Administrator")]
 public partial class Administrator : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -1369,6 +909,466 @@ public partial class Administrator : INotifyPropertyChanging, INotifyPropertyCha
 	{
 		this.SendPropertyChanging();
 		entity.Administrator = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Deals")]
+public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _DealID;
+	
+	private int _CatID;
+	
+	private string _Title;
+	
+	private double _Value;
+	
+	private double _DiscountRate;
+	
+	private System.DateTime _ExpiresOn;
+	
+	private bool _AllowMultiplePurchase;
+	
+	private bool _Limited;
+	
+	private System.Nullable<int> _NoOfVouchers;
+	
+	private string _Terms;
+	
+	private string _OtherDesc;
+	
+	private string _ImageURL;
+	
+	private int _PostedBy;
+	
+	private EntitySet<Order> _Orders;
+	
+	private EntityRef<Administrator> _Administrator;
+	
+	private EntityRef<Category> _Category;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDealIDChanging(int value);
+    partial void OnDealIDChanged();
+    partial void OnCatIDChanging(int value);
+    partial void OnCatIDChanged();
+    partial void OnTitleChanging(string value);
+    partial void OnTitleChanged();
+    partial void OnValueChanging(double value);
+    partial void OnValueChanged();
+    partial void OnDiscountRateChanging(double value);
+    partial void OnDiscountRateChanged();
+    partial void OnExpiresOnChanging(System.DateTime value);
+    partial void OnExpiresOnChanged();
+    partial void OnAllowMultiplePurchaseChanging(bool value);
+    partial void OnAllowMultiplePurchaseChanged();
+    partial void OnLimitedChanging(bool value);
+    partial void OnLimitedChanged();
+    partial void OnNoOfVouchersChanging(System.Nullable<int> value);
+    partial void OnNoOfVouchersChanged();
+    partial void OnTermsChanging(string value);
+    partial void OnTermsChanged();
+    partial void OnOtherDescChanging(string value);
+    partial void OnOtherDescChanged();
+    partial void OnImageURLChanging(string value);
+    partial void OnImageURLChanged();
+    partial void OnPostedByChanging(int value);
+    partial void OnPostedByChanged();
+    #endregion
+	
+	public Deal()
+	{
+		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+		this._Administrator = default(EntityRef<Administrator>);
+		this._Category = default(EntityRef<Category>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int DealID
+	{
+		get
+		{
+			return this._DealID;
+		}
+		set
+		{
+			if ((this._DealID != value))
+			{
+				this.OnDealIDChanging(value);
+				this.SendPropertyChanging();
+				this._DealID = value;
+				this.SendPropertyChanged("DealID");
+				this.OnDealIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CatID", DbType="Int NOT NULL")]
+	public int CatID
+	{
+		get
+		{
+			return this._CatID;
+		}
+		set
+		{
+			if ((this._CatID != value))
+			{
+				if (this._Category.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnCatIDChanging(value);
+				this.SendPropertyChanging();
+				this._CatID = value;
+				this.SendPropertyChanged("CatID");
+				this.OnCatIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string Title
+	{
+		get
+		{
+			return this._Title;
+		}
+		set
+		{
+			if ((this._Title != value))
+			{
+				this.OnTitleChanging(value);
+				this.SendPropertyChanging();
+				this._Title = value;
+				this.SendPropertyChanged("Title");
+				this.OnTitleChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="Float NOT NULL")]
+	public double Value
+	{
+		get
+		{
+			return this._Value;
+		}
+		set
+		{
+			if ((this._Value != value))
+			{
+				this.OnValueChanging(value);
+				this.SendPropertyChanging();
+				this._Value = value;
+				this.SendPropertyChanged("Value");
+				this.OnValueChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiscountRate", DbType="Float NOT NULL")]
+	public double DiscountRate
+	{
+		get
+		{
+			return this._DiscountRate;
+		}
+		set
+		{
+			if ((this._DiscountRate != value))
+			{
+				this.OnDiscountRateChanging(value);
+				this.SendPropertyChanging();
+				this._DiscountRate = value;
+				this.SendPropertyChanged("DiscountRate");
+				this.OnDiscountRateChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresOn", DbType="DateTime NOT NULL")]
+	public System.DateTime ExpiresOn
+	{
+		get
+		{
+			return this._ExpiresOn;
+		}
+		set
+		{
+			if ((this._ExpiresOn != value))
+			{
+				this.OnExpiresOnChanging(value);
+				this.SendPropertyChanging();
+				this._ExpiresOn = value;
+				this.SendPropertyChanged("ExpiresOn");
+				this.OnExpiresOnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowMultiplePurchase", DbType="Bit NOT NULL")]
+	public bool AllowMultiplePurchase
+	{
+		get
+		{
+			return this._AllowMultiplePurchase;
+		}
+		set
+		{
+			if ((this._AllowMultiplePurchase != value))
+			{
+				this.OnAllowMultiplePurchaseChanging(value);
+				this.SendPropertyChanging();
+				this._AllowMultiplePurchase = value;
+				this.SendPropertyChanged("AllowMultiplePurchase");
+				this.OnAllowMultiplePurchaseChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Limited", DbType="Bit NOT NULL")]
+	public bool Limited
+	{
+		get
+		{
+			return this._Limited;
+		}
+		set
+		{
+			if ((this._Limited != value))
+			{
+				this.OnLimitedChanging(value);
+				this.SendPropertyChanging();
+				this._Limited = value;
+				this.SendPropertyChanged("Limited");
+				this.OnLimitedChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoOfVouchers", DbType="Int")]
+	public System.Nullable<int> NoOfVouchers
+	{
+		get
+		{
+			return this._NoOfVouchers;
+		}
+		set
+		{
+			if ((this._NoOfVouchers != value))
+			{
+				this.OnNoOfVouchersChanging(value);
+				this.SendPropertyChanging();
+				this._NoOfVouchers = value;
+				this.SendPropertyChanged("NoOfVouchers");
+				this.OnNoOfVouchersChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Terms", DbType="NVarChar(MAX)")]
+	public string Terms
+	{
+		get
+		{
+			return this._Terms;
+		}
+		set
+		{
+			if ((this._Terms != value))
+			{
+				this.OnTermsChanging(value);
+				this.SendPropertyChanging();
+				this._Terms = value;
+				this.SendPropertyChanged("Terms");
+				this.OnTermsChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherDesc", DbType="NVarChar(MAX)")]
+	public string OtherDesc
+	{
+		get
+		{
+			return this._OtherDesc;
+		}
+		set
+		{
+			if ((this._OtherDesc != value))
+			{
+				this.OnOtherDescChanging(value);
+				this.SendPropertyChanging();
+				this._OtherDesc = value;
+				this.SendPropertyChanged("OtherDesc");
+				this.OnOtherDescChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageURL", DbType="VarChar(MAX)")]
+	public string ImageURL
+	{
+		get
+		{
+			return this._ImageURL;
+		}
+		set
+		{
+			if ((this._ImageURL != value))
+			{
+				this.OnImageURLChanging(value);
+				this.SendPropertyChanging();
+				this._ImageURL = value;
+				this.SendPropertyChanged("ImageURL");
+				this.OnImageURLChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostedBy", DbType="Int NOT NULL")]
+	public int PostedBy
+	{
+		get
+		{
+			return this._PostedBy;
+		}
+		set
+		{
+			if ((this._PostedBy != value))
+			{
+				if (this._Administrator.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnPostedByChanging(value);
+				this.SendPropertyChanging();
+				this._PostedBy = value;
+				this.SendPropertyChanged("PostedBy");
+				this.OnPostedByChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_Order", Storage="_Orders", ThisKey="DealID", OtherKey="DealID")]
+	public EntitySet<Order> Orders
+	{
+		get
+		{
+			return this._Orders;
+		}
+		set
+		{
+			this._Orders.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administrator_Deal", Storage="_Administrator", ThisKey="PostedBy", OtherKey="AdminID", IsForeignKey=true)]
+	public Administrator Administrator
+	{
+		get
+		{
+			return this._Administrator.Entity;
+		}
+		set
+		{
+			Administrator previousValue = this._Administrator.Entity;
+			if (((previousValue != value) 
+						|| (this._Administrator.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Administrator.Entity = null;
+					previousValue.Deals.Remove(this);
+				}
+				this._Administrator.Entity = value;
+				if ((value != null))
+				{
+					value.Deals.Add(this);
+					this._PostedBy = value.AdminID;
+				}
+				else
+				{
+					this._PostedBy = default(int);
+				}
+				this.SendPropertyChanged("Administrator");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Category_Deal", Storage="_Category", ThisKey="CatID", OtherKey="CatID", IsForeignKey=true)]
+	public Category Category
+	{
+		get
+		{
+			return this._Category.Entity;
+		}
+		set
+		{
+			Category previousValue = this._Category.Entity;
+			if (((previousValue != value) 
+						|| (this._Category.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Category.Entity = null;
+					previousValue.Deals.Remove(this);
+				}
+				this._Category.Entity = value;
+				if ((value != null))
+				{
+					value.Deals.Add(this);
+					this._CatID = value.CatID;
+				}
+				else
+				{
+					this._CatID = default(int);
+				}
+				this.SendPropertyChanged("Category");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_Orders(Order entity)
+	{
+		this.SendPropertyChanging();
+		entity.Deal = this;
+	}
+	
+	private void detach_Orders(Order entity)
+	{
+		this.SendPropertyChanging();
+		entity.Deal = null;
 	}
 }
 #pragma warning restore 1591
