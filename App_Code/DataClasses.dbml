@@ -32,6 +32,14 @@
       <Association Name="User_Administrator" Member="Administrators" ThisKey="UserID" OtherKey="UserID" Type="Administrator" />
     </Type>
   </Table>
+  <Table Name="dbo.Administrator" Member="Administrators">
+    <Type Name="Administrator">
+      <Column Name="AdminID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Administrator_Deal" Member="Deals" ThisKey="AdminID" OtherKey="PostedBy" Type="Deal" />
+      <Association Name="User_Administrator" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.Deals" Member="Deals">
     <Type Name="Deal">
       <Column Name="DealID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -40,24 +48,16 @@
       <Column Name="Value" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="DiscountRate" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="ExpiresOn" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="AllowMultiplePurchase" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Limited" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="AllowMultiplePurchase" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Limited" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="NoOfVouchers" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Terms" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="OtherDesc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="ImageURL" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
       <Column Name="PostedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Deal_Order" Member="Orders" ThisKey="DealID" OtherKey="DealID" Type="Order" />
-      <Association Name="Category_Deal" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
       <Association Name="Administrator_Deal" Member="Administrator" ThisKey="PostedBy" OtherKey="AdminID" Type="Administrator" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Administrator" Member="Administrators">
-    <Type Name="Administrator">
-      <Column Name="AdminID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Administrator_Deal" Member="Deals" ThisKey="AdminID" OtherKey="PostedBy" Type="Deal" />
-      <Association Name="User_Administrator" Member="User" ThisKey="UserID" OtherKey="UserID" Type="User" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Category_Deal" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
