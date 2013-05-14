@@ -18,4 +18,7 @@ public class DealMetadata
 
     [UIHint("TermsDataField")]
     public object Terms;
+
+    [UIHint("ImageUploadDataField")]
+    public object ImageURL;
 }
