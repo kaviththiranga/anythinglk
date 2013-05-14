@@ -14,7 +14,7 @@ public partial class DateTime_EditField : System.Web.DynamicData.FieldTemplateUs
         SetUpValidator(RequiredFieldValidator1);
         SetUpValidator(RegularExpressionValidator1);
         SetUpValidator(DynamicValidator1);
-        //SetUpCustomValidator(DateValidator);
+        SetUpCustomValidator(DateValidator);
     }
 
     private void SetUpCustomValidator(CustomValidator validator) {

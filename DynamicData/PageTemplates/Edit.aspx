@@ -27,7 +27,7 @@
                             <asp:DynamicEntity runat="server" Mode="Edit" />
                             <tr class="td">
                                 <td colspan="2">
-                                    <asp:LinkButton CssClass="btn btn-success" runat="server" CommandName="Update" Text="Update" />
+                                    <asp:LinkButton ID="SaveBtn" ClientIDMode="Static" CssClass="btn btn-success" runat="server" CommandName="Update" Text="Update" />
                                     <asp:LinkButton CssClass="btn btn-warning" runat="server" CommandName="Cancel" Text="Cancel" CausesValidation="false" />
                                 </td>
                             </tr>

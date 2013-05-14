@@ -11,9 +11,9 @@ public partial class MultilineText_EditField : System.Web.DynamicData.FieldTempl
         TextBox1.MaxLength = Column.MaxLength;
         TextBox1.ToolTip = Column.Description;
 
-        SetUpValidator(RequiredFieldValidator1);
-        SetUpValidator(RegularExpressionValidator1);
-        SetUpValidator(DynamicValidator1);
+       SetUpValidator(RequiredFieldValidator1);
+       SetUpValidator(RegularExpressionValidator1);
+       SetUpValidator(DynamicValidator1);
     }
 
     protected override void ExtractValues(IOrderedDictionary dictionary) {
