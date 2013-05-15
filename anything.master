@@ -162,16 +162,16 @@
         <!-- End of slide show area -->
 
         <!-- Start of the main content area -->
-        <div id="BodyContentDiv" class="row">
+        <div id="BodyContentDiv" class="container row">
 
             <!-- Start of content area -->
-            <div id="ContentArea" class="span10">
-                <div class="well">
+            
+                <div class="span9 well">
                 <asp:ContentPlaceHolder id="ContentAreaPlaceHolder" runat="server">
                 
                 </asp:ContentPlaceHolder> 
                 </div>
-            </div> 
+            
             <!-- End of content area -->
             
             <!-- start of right panel -->

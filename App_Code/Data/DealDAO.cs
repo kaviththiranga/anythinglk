@@ -1,49 +1,42 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Linq;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 
-/// <summary>
-/// Summary description for DealDAO
-/// </summary>
 public class DealDAO : AbstractDAO
 {
-	private DataTable dealDataTable;
-
     // LINQ Query to get all records in the table
     private IEnumerable<Deal> allDealsQuery;
 
-    private List<Deal> dealsList;
+    private SqlCacheDependency dependency;
+
 
     public DealDAO()
 	{
-        dealsList = new List<Deal>();
+        dependency = new SqlCacheDependency("anythinglk", "Deals");
         allDealsQuery = from deal in db.Deals orderby deal.PlacedOn descending select deal;
 
-        dealDataTable = AbstractDAO.LINQToDataTable<Deal>(allDealsQuery);
-
-        initList();
-        isCacheValid = true;        
+        HttpContext.Current.Cache.Insert("CacheValid", new Deal(), dependency);
+        Reload();
+               
 	}
 
-    private void initList() {
-
-        foreach (Deal deal in allDealsQuery) {
-
-            dealsList.Add(deal);
-        }
+    public void Reload()
+    {
+        db.Refresh(RefreshMode.OverwriteCurrentValues, allDealsQuery);
     }
 
     public DataTable getUserTable() 
     {
-        if (!isCacheValid)
+        if (HttpContext.Current.Cache["CacheValid"] == null)
         {
-            dealDataTable = AbstractDAO.LINQToDataTable<Deal>(allDealsQuery);
-            initList();
+            Reload();
         }
-           
-        return dealDataTable;
+        return AbstractDAO.LINQToDataTable<Deal>(allDealsQuery);       
     }
 
     public bool insertOrUpdate(Deal deal)
@@ -74,7 +67,12 @@ public class DealDAO : AbstractDAO
 
     public Deal getDealByDealID(String dealID) {
 
-        foreach (Deal deal in allDealsQuery) {
+        if (HttpContext.Current.Cache["CacheValid"] == null)
+        {
+            Reload();
+        }
+        foreach (Deal deal in allDealsQuery)
+        {
 
             if (deal.DealID.Equals(dealID))
             {
@@ -87,15 +85,19 @@ public class DealDAO : AbstractDAO
 
     public List<Deal> getDealsByCat(int catID)
     {
-        initList();
         List<Deal> set = new List<Deal>();
 
-        foreach (Deal d in dealsList) {
+        if (HttpContext.Current.Cache["CacheValid"] == null)
+        {
+            Reload();
+        }
+        foreach (Deal deal in allDealsQuery)
+        {
 
-            if (d.CatID == catID)
+            if (deal.CatID == catID)
             {
-            
-                set.Add(d);
+
+                set.Add(deal);
             }
         }
         return set;
@@ -103,22 +105,26 @@ public class DealDAO : AbstractDAO
 
     public List<Deal> getDealsByCat(int catID, int count)
     {
-        initList();
         List<Deal> set = new List<Deal>();
 
-        foreach (Deal d in dealsList)
+        if (HttpContext.Current.Cache["CacheValid"] == null) {
+            Reload();
+        }
+        foreach (Deal deal in allDealsQuery)
         {
 
-            if (d.CatID == catID)
+            if (deal.CatID == catID)
             {
 
-                set.Add(d);
+                set.Add(deal);
             }
 
-            if (set.Count == count) {
+            if (set.Count == count)
+            {
                 break;
             }
-        }
+        }        
+        
         return set;
     }
 }

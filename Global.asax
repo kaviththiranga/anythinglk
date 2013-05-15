@@ -7,9 +7,6 @@
 
     void Application_Start(object sender, EventArgs e) 
     {
-//throw new Exception(ConfigurationManager.ConnectionStrings["anythinglkConnectionString"].ConnectionString);
-        // Code that runs on application startup
-        System.Data.SqlClient.SqlDependency.Start(ConfigurationManager.ConnectionStrings["anythinglkConnectionString"].ConnectionString);
 
         // Create an instance of the data model. 
         MetaModel DefaultModel = new MetaModel();
@@ -32,13 +29,12 @@
     
     void Application_End(object sender, EventArgs e) 
     {
-        //  Code that runs on application shutdown
-        System.Data.SqlClient.SqlDependency.Stop(ConfigurationManager.ConnectionStrings["anythinglkConnectionString"].ConnectionString);
+       
     }
         
     void Application_Error(object sender, EventArgs e) 
     { 
-        // Code that runs when an unhandled error occurs
+        
 
     }
 
