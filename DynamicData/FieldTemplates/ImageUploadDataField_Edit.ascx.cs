@@ -14,8 +14,13 @@ using System.Xml.Linq;
 using System.Web.DynamicData;
 
 public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField : System.Web.DynamicData.FieldTemplateUserControl {
+
+
+    private static string images ="";
+
     protected void Page_Load(object sender, EventArgs e) {
         TextBox1.MaxLength = Column.MaxLength;
+
         if (Column.MaxLength < 20)
             TextBox1.Columns = Column.MaxLength;
         TextBox1.ToolTip = Column.Description;
@@ -26,7 +31,8 @@ public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField :
     }
     
     protected override void ExtractValues(IOrderedDictionary dictionary) {
-        dictionary[Column.Name] = ConvertEditedValue(TextBox1.Text);
+       
+        dictionary[Column.Name] = ConvertEditedValue(images);
     }
 
     public override Control DataControl {
@@ -36,9 +42,9 @@ public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField :
     }
     protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
     {
-        string path = MapPath("~/uploadedImgs/") + e.FileName;
-        AjaxFileUpload1.SaveAs(path);
-        TextBox1.Text += path + ";";
-       
+        string path = "uploadedImgs/" + AdminController.getCurrentAdmin().User.FirstName + e.FileName.ToString();
+        images += path;
+        AjaxFileUpload1.SaveAs(MapPath("~/" + path));
+        
     }
 }

@@ -14,20 +14,33 @@ public class DealDAO : AbstractDAO
     // LINQ Query to get all records in the table
     private IEnumerable<Deal> allDealsQuery;
 
+    private List<Deal> dealsList;
+
     public DealDAO()
 	{
-        allDealsQuery = from deal in db.Deals select deal;
+        dealsList = new List<Deal>();
+        allDealsQuery = from deal in db.Deals orderby deal.PlacedOn descending select deal;
 
         dealDataTable = AbstractDAO.LINQToDataTable<Deal>(allDealsQuery);
 
+        initList();
         isCacheValid = true;        
 	}
+
+    private void initList() {
+
+        foreach (Deal deal in allDealsQuery) {
+
+            dealsList.Add(deal);
+        }
+    }
 
     public DataTable getUserTable() 
     {
         if (!isCacheValid)
         {
             dealDataTable = AbstractDAO.LINQToDataTable<Deal>(allDealsQuery);
+            initList();
         }
            
         return dealDataTable;
@@ -72,4 +85,40 @@ public class DealDAO : AbstractDAO
         return null;
     }
 
+    public List<Deal> getDealsByCat(int catID)
+    {
+        initList();
+        List<Deal> set = new List<Deal>();
+
+        foreach (Deal d in dealsList) {
+
+            if (d.CatID == catID)
+            {
+            
+                set.Add(d);
+            }
+        }
+        return set;
+    }
+
+    public List<Deal> getDealsByCat(int catID, int count)
+    {
+        initList();
+        List<Deal> set = new List<Deal>();
+
+        foreach (Deal d in dealsList)
+        {
+
+            if (d.CatID == catID)
+            {
+
+                set.Add(d);
+            }
+
+            if (set.Count == count) {
+                break;
+            }
+        }
+        return set;
+    }
 }

@@ -8,13 +8,22 @@ using System.Web;
 /// </summary>
 public class DealsController
 {
-	public DealsController()
-	{
-		//
-		// TODO: Add constructor logic here
+    private static DealDAO dao;
 
-        //Dea
-		//
+	static DealsController()
+	{
+        dao = new DealDAO();
 	}
+
+    public static List<Deal> getDealsByCat(int catID)
+    {
+
+        return dao.getDealsByCat(catID);
+    }
+
+    public static List<Deal> getDealsByCat(int catID, int count)
+    {
+        return dao.getDealsByCat(catID, count);
+    }
 
 }

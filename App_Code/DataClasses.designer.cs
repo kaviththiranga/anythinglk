@@ -944,6 +944,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _PostedBy;
 	
+	private System.Nullable<System.DateTime> _PlacedOn;
+	
 	private EntitySet<Order> _Orders;
 	
 	private EntityRef<Administrator> _Administrator;
@@ -980,6 +982,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnImageURLChanged();
     partial void OnPostedByChanging(int value);
     partial void OnPostedByChanged();
+    partial void OnPlacedOnChanging(System.Nullable<System.DateTime> value);
+    partial void OnPlacedOnChanged();
     #endregion
 	
 	public Deal()
@@ -1254,6 +1258,26 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 				this._PostedBy = value;
 				this.SendPropertyChanged("PostedBy");
 				this.OnPostedByChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime", IsDbGenerated=true)]
+	public System.Nullable<System.DateTime> PlacedOn
+	{
+		get
+		{
+			return this._PlacedOn;
+		}
+		set
+		{
+			if ((this._PlacedOn != value))
+			{
+				this.OnPlacedOnChanging(value);
+				this.SendPropertyChanging();
+				this._PlacedOn = value;
+				this.SendPropertyChanged("PlacedOn");
+				this.OnPlacedOnChanged();
 			}
 		}
 	}

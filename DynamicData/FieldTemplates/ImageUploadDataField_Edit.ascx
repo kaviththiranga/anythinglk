@@ -8,7 +8,7 @@
     UploaderStyle="Modern"
     OnClientUploadError=""
     runat="server"/>   
-<asp:TextBox ID="TextBox1" runat="server" Text='<%# FieldValueEditString %>' ReadOnly="True" ViewStateMode="Disabled"></asp:TextBox>
+<asp:TextBox ID="TextBox1" runat="server" Text='<%# FieldValueEditString %>'></asp:TextBox>
 
 <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="TextBox1" Display="Dynamic" Enabled="false" />
 <asp:RegularExpressionValidator runat="server" ID="RegularExpressionValidator1" ControlToValidate="TextBox1" Display="Dynamic" Enabled="false" />
