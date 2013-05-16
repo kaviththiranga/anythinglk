@@ -940,6 +940,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _OtherDesc;
 	
+	private string _ThumbURL;
+	
 	private string _ImageURL;
 	
 	private int _PostedBy;
@@ -978,6 +980,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnTermsChanged();
     partial void OnOtherDescChanging(string value);
     partial void OnOtherDescChanged();
+    partial void OnThumbURLChanging(string value);
+    partial void OnThumbURLChanged();
     partial void OnImageURLChanging(string value);
     partial void OnImageURLChanged();
     partial void OnPostedByChanging(int value);
@@ -1038,7 +1042,7 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Title", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
 	public string Title
 	{
 		get
@@ -1218,6 +1222,26 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThumbURL", DbType="NVarChar(MAX)")]
+	public string ThumbURL
+	{
+		get
+		{
+			return this._ThumbURL;
+		}
+		set
+		{
+			if ((this._ThumbURL != value))
+			{
+				this.OnThumbURLChanging(value);
+				this.SendPropertyChanging();
+				this._ThumbURL = value;
+				this.SendPropertyChanged("ThumbURL");
+				this.OnThumbURLChanged();
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageURL", DbType="VarChar(MAX)")]
 	public string ImageURL
 	{
@@ -1262,7 +1286,7 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime", IsDbGenerated=true)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime")]
 	public System.Nullable<System.DateTime> PlacedOn
 	{
 		get

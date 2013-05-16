@@ -25,28 +25,44 @@
     <div id="imageslider" class="" style="height:200px;margin-bottom:20px;text-align:center;"></div>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
-    <asp:Repeater ID="DailyDRepeater" runat="server">
+    <div class="row">
+        <asp:Repeater ID="DailyDRepeater" runat="server">
+            <HeaderTemplate>
+                <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
+                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                </div>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div class="span2 well" style="text-align:center;">                    
 
-        <ItemTemplate>
-            <div class="span2 well">
-                <h4><%# Eval("Title") %></h4>
+                     <a href="<%# Eval("ImageURL") %>" class="thumbnail">
+                        <img src="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
+                    </a>
+                    <p;><%# Eval("Title") %></p>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-info" style="width:120px;font-size:large;padding:5px;">Rs. <%# Eval("DiscountedPrice") %>/=</span>
+                    </div>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-warning" style="width:120px; text-decoration:line-through;font-size:large;padding:5px;">Rs. <%# Eval("Value") %>/=</span>
+                    </div>
+                    <a href="viewDeal.aspx?dealID=<%# Eval("DealID") %>" class="btn btn-success">View Deal <i class="icon-arrow"></i></a>
+                    
+                </div>
+                
+            </ItemTemplate>    
+            <FooterTemplate>
+                
 
-                 <a href="<%# Eval("ImageURL") %>" class="thumbnail">
-                    <img src="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
-                </a>
-                <p><%# Eval("Terms") %></p>
-            </div>
-        </ItemTemplate>    
-
-    </asp:Repeater>
+            </FooterTemplate>
+        </asp:Repeater>
+    </div>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div class="btn-group btn-group-vertical">
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-shopping-cart"></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></button>
+        <a class="btn" href="#dailydeals" style="width:120px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a>
+        <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a>
+        <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a>
+        <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></a>
     </div>
 
 </asp:Content>
@@ -63,5 +79,15 @@
         var firstbgcarousel = new bgCarousel({
             wrapperid: 'imageslider', imagearray: [['images/slides/baba.jpg', '<h2></h2>'], ['images/slides/biona.jpg', '<h2></h2>'], ['images/slides/funboxlk.jpg', ''], ['images/slides/mmi.jpg', ''], ['images/slides/samasungs4.jpg', ''], ['images/slides/starpoints.jpg', ''], ['images/slides/Top-Banner2.jpg', ''], ['images/slides/litrogas.jpg', '']], displaymode: { type: 'auto', pause: 3000, cycles: 2, stoponclick: false, pauseonmouseover: true }, navbuttons: ['images/slideshowbtns/left.gif', 'images/slideshowbtns/right.gif', 'images/slideshowbtns/up.gif', 'images/slideshowbtns/down.gif'], activeslideclass: 'selectedslide', orientation: 'h', persist: true, slideduration: 500
         });
+    </script>
+    <script type="text/javascript">
+        (function ($) {
+            $('a').click(function () {
+                $('html, body').animate({
+                    scrollTop: $($.attr(this, 'href')).offset().top
+                }, 500);
+                return false;
+            });
+        })(jQuery);
     </script>
 </asp:Content>

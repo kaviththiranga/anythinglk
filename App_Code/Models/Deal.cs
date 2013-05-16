@@ -8,7 +8,11 @@ using System.Web;
 [MetadataType(typeof(DealMetadata))]
 public partial class Deal
 {
-
+    public double DiscountedPrice {
+        get {
+            return this.Value * this.DiscountRate / 100;
+        }
+    }
 }
 
 public class DealMetadata

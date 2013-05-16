@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Caching;
+using System.Threading;
 
 public class DealDAO : AbstractDAO
 {
@@ -14,20 +15,22 @@ public class DealDAO : AbstractDAO
 
     private SqlCacheDependency dependency;
 
+    private CacheInfo cacheInfo;
 
     public DealDAO()
 	{
         dependency = new SqlCacheDependency("anythinglk", "Deals");
         allDealsQuery = from deal in db.Deals orderby deal.PlacedOn descending select deal;
+        cacheInfo = new CacheInfo();
 
-        HttpContext.Current.Cache.Insert("CacheValid", new Deal(), dependency);
-        Reload();
+        HttpContext.Current.Cache.Insert("CacheValid", cacheInfo, dependency);
                
 	}
 
     public void Reload()
     {
         db.Refresh(RefreshMode.OverwriteCurrentValues, allDealsQuery);
+        HttpContext.Current.Cache.Insert("CacheValid", cacheInfo, dependency);
     }
 
     public DataTable getUserTable() 
@@ -65,7 +68,7 @@ public class DealDAO : AbstractDAO
     
     }
 
-    public Deal getDealByDealID(String dealID) {
+    public Deal getDealByDealID(int dealID) {
 
         if (HttpContext.Current.Cache["CacheValid"] == null)
         {
@@ -74,7 +77,7 @@ public class DealDAO : AbstractDAO
         foreach (Deal deal in allDealsQuery)
         {
 
-            if (deal.DealID.Equals(dealID))
+            if (deal.DealID == dealID)
             {
                 return deal;
             }
@@ -107,8 +110,10 @@ public class DealDAO : AbstractDAO
     {
         List<Deal> set = new List<Deal>();
 
-        if (HttpContext.Current.Cache["CacheValid"] == null) {
+        if (HttpContext.Current.Cache["CacheValid"] == null)
+        {
             Reload();
+            //Thread.Sleep(12000);
         }
         foreach (Deal deal in allDealsQuery)
         {
@@ -127,4 +132,12 @@ public class DealDAO : AbstractDAO
         
         return set;
     }
+
+    
+}
+
+public class CacheInfo
+{
+
+    public String IsValid { get; set; }
 }

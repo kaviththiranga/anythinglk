@@ -26,4 +26,8 @@ public class DealsController
         return dao.getDealsByCat(catID, count);
     }
 
+    public static Deal getDealByDealID(int dealID)
+    {
+        return dao.getDealByDealID(dealID);
+    }
 }
