@@ -59,7 +59,7 @@
     <div class="row">
         <asp:Repeater ID="Repeater1" runat="server">
             <HeaderTemplate>
-                <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
+                <div id="events" class="span8 label label-info" style="margin-bottom:20px;">
                     <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
                 </div>
             </HeaderTemplate>
@@ -90,7 +90,7 @@
     <div class="row">
         <asp:Repeater ID="Repeater2" runat="server">
             <HeaderTemplate>
-                <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
+                <div id="travel" class="span8 label label-info" style="margin-bottom:20px;">
                     <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
                 </div>
             </HeaderTemplate>
@@ -122,8 +122,8 @@
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div id="JumpLinks"class="btn-group btn-group-vertical">
         <a class="btn" href="#dailydeals" style="width:120px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a>
-        <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a>
-        <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a>
+        <a class="btn" href="#events" style="width:120px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a>
+        <a class="btn" href="#travel" style="width:120px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a>
         <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></a>
     </div>
 
@@ -144,7 +144,7 @@
     </script>
     <script type="text/javascript">
         (function ($) {
-            $('#JumpLinks, a').click(function () {
+            $('#JumpLinks a').click(function () {
                 $('html, body').animate({
                     scrollTop: $($.attr(this, 'href')).offset().top
                 }, 500);
