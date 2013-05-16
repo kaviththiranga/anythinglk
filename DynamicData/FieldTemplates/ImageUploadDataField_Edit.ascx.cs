@@ -12,18 +12,17 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Xml.Linq;
 using System.Web.DynamicData;
+using AjaxControlToolkit;
+using System.Drawing;
 
 public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField : System.Web.DynamicData.FieldTemplateUserControl {
 
-
-    private static string images ="";
+    private static string[,] images= new string[10,2];
+    private static int imgCount = 0;
 
     protected void Page_Load(object sender, EventArgs e) {
-        TextBox1.MaxLength = Column.MaxLength;
-
-        if (Column.MaxLength < 20)
-            TextBox1.Columns = Column.MaxLength;
-        TextBox1.ToolTip = Column.Description;
+        imgCount = 0;
+        TextBoxImages.ViewStateMode = System.Web.UI.ViewStateMode.Disabled;
 
         SetUpValidator(RequiredFieldValidator1);
         SetUpValidator(RegularExpressionValidator1);
@@ -31,20 +30,33 @@ public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField :
     }
     
     protected override void ExtractValues(IOrderedDictionary dictionary) {
-       
-        dictionary[Column.Name] = ConvertEditedValue(images);
+
+        string value = "";
+
+        while (imgCount >= 0) {
+
+            value += images[imgCount, 1] ;//+ ";";
+            imgCount--;
+        }
+        dictionary[Column.Name] = ConvertEditedValue(value);
+
+        images = new string[10, 2];
+        imgCount = 0;
     }
 
     public override Control DataControl {
         get {
-            return TextBox1;
+            return TextBoxImages;
         }
     }
     protected void AjaxFileUpload1_UploadComplete(object sender, AjaxControlToolkit.AjaxFileUploadEventArgs e)
     {
         string path = "uploadedImgs/" + AdminController.getCurrentAdmin().User.FirstName + e.FileName.ToString();
-        images += path;
         AjaxFileUpload1.SaveAs(MapPath("~/" + path));
-        
+        images[imgCount, 1] = path;
+        imgCount++;
+        /*System.Drawing.Image image = System.Drawing.Image.FromFile(MapPath("~/" + path));
+        System.Drawing.Image thumb = image.GetThumbnailImage(120, 120, () => false, IntPtr.Zero);
+        thumb.Save(MapPath("~/"+"uploadedImgs/thumbs/"+AdminController.getCurrentAdmin().User.FirstName + e.FileName.ToString()));*/
     }
 }

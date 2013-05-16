@@ -10,7 +10,7 @@ public partial class Deal
 {
     public double DiscountedPrice {
         get {
-            return this.Value * this.DiscountRate / 100;
+            return this.Value * (100-this.DiscountRate) / 100;
         }
     }
 }

@@ -36,7 +36,69 @@
                 <div class="span2 well" style="text-align:center;">                    
 
                      <a href="<%# Eval("ImageURL") %>" class="thumbnail">
-                        <img src="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
+                        <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
+                    </a>
+                    <p;><%# Eval("Title") %></p>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-info" style="width:120px;font-size:large;padding:5px;">Rs. <%# Eval("DiscountedPrice") %>/=</span>
+                    </div>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-warning" style="width:120px; text-decoration:line-through;font-size:large;padding:5px;">Rs. <%# Eval("Value") %>/=</span>
+                    </div>
+                    <a href="viewDeal.aspx?dealID=<%# Eval("DealID") %>" class="btn btn-success">View Deal <i class="icon-arrow"></i></a>
+                    
+                </div>
+                
+            </ItemTemplate>    
+            <FooterTemplate>
+                
+
+            </FooterTemplate>
+        </asp:Repeater>
+    </div>
+    <div class="row">
+        <asp:Repeater ID="Repeater1" runat="server">
+            <HeaderTemplate>
+                <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
+                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                </div>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div class="span2 well" style="text-align:center;">                    
+
+                     <a href="<%# Eval("ImageURL") %>" class="thumbnail">
+                        <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
+                    </a>
+                    <p;><%# Eval("Title") %></p>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-info" style="width:120px;font-size:large;padding:5px;">Rs. <%# Eval("DiscountedPrice") %>/=</span>
+                    </div>
+                    <div style="margin: 5px 0 5px 0;">
+                        <span class="label label-warning" style="width:120px; text-decoration:line-through;font-size:large;padding:5px;">Rs. <%# Eval("Value") %>/=</span>
+                    </div>
+                    <a href="viewDeal.aspx?dealID=<%# Eval("DealID") %>" class="btn btn-success">View Deal <i class="icon-arrow"></i></a>
+                    
+                </div>
+                
+            </ItemTemplate>    
+            <FooterTemplate>
+                
+
+            </FooterTemplate>
+        </asp:Repeater>
+    </div>
+    <div class="row">
+        <asp:Repeater ID="Repeater2" runat="server">
+            <HeaderTemplate>
+                <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
+                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                </div>
+            </HeaderTemplate>
+            <ItemTemplate>
+                <div class="span2 well" style="text-align:center;">                    
+
+                     <a href="<%# Eval("ImageURL") %>" class="thumbnail">
+                        <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
                     </a>
                     <p;><%# Eval("Title") %></p>
                     <div style="margin: 5px 0 5px 0;">
@@ -58,7 +120,7 @@
     </div>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
-    <div class="btn-group btn-group-vertical">
+    <div id="JumpLinks"class="btn-group btn-group-vertical">
         <a class="btn" href="#dailydeals" style="width:120px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a>
         <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a>
         <a class="btn" style="width:120px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a>
@@ -82,7 +144,7 @@
     </script>
     <script type="text/javascript">
         (function ($) {
-            $('a').click(function () {
+            $('#JumpLinks, a').click(function () {
                 $('html, body').animate({
                     scrollTop: $($.attr(this, 'href')).offset().top
                 }, 500);

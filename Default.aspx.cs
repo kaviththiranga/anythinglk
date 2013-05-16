@@ -13,7 +13,11 @@ public partial class _Default : BasePage
     {
         DailyDRepeater.DataSource = DealsController.getDealsByCat(1, 5);
         DailyDRepeater.DataBind();
-     
+
+        Repeater1.DataSource = DealsController.getDealsByCat(1, 5);
+        Repeater1.DataBind();
+        Repeater2.DataSource = DealsController.getDealsByCat(1, 5);
+        Repeater2.DataBind();
     }
     protected void Button6_Click(object sender, EventArgs e)
     {
