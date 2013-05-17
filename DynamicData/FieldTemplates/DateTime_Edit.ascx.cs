@@ -40,7 +40,18 @@ public partial class DateTime_EditField : System.Web.DynamicData.FieldTemplateUs
     }
 
     protected override void ExtractValues(IOrderedDictionary dictionary) {
-        dictionary[Column.Name] = ConvertEditedValue(TextBox1.Text);
+        if (TextBox2.Text != "")
+        {
+            string formatString = "dd/MM/yyyy HH:mm:ss";
+            DateTime val = DateTime.ParseExact(TextBox2.Text, formatString, null);
+
+            dictionary[Column.Name] = val;
+        }
+        else 
+        {
+            dictionary[Column.Name] = ConvertEditedValue(TextBox1.Text);
+        }
+        
     }
 
     public override Control DataControl {

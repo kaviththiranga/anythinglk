@@ -29,12 +29,14 @@
         <asp:Repeater ID="DailyDRepeater" runat="server">
             <HeaderTemplate>
                 <div id="dailydeals" class="span8 label label-info" style="margin-bottom:20px;">
-                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                    <div class="label label-info"><h5><i class="icon-list"></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></h5></div>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="span2 well" style="text-align:center;">                    
-
+                    <div style="position:relative;right:-20px;top:20px; padding-top:0; width:40px;height:44px; color: #FFFFFF; float: right;font-size: 14px; font-weight: bold; line-height: 25px; margin-top: -10px;text-align: center;background:url(images/discount.png) no-repeat scroll 0 0 transparent;">
+                        <div> <%# Eval("DiscountRate") %>% </div>
+                    </div>
                      <a href="<%# Eval("ImageURL") %>" class="thumbnail">
                         <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
                     </a>
@@ -60,15 +62,19 @@
         <asp:Repeater ID="Repeater1" runat="server">
             <HeaderTemplate>
                 <div id="events" class="span8 label label-info" style="margin-bottom:20px;">
-                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                    <div class="label label-info"><h5><i class="icon-calendar"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></h5></div>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="span2 well" style="text-align:center;">                    
-
+                    <div style="position:relative;right:-20px;top:20px; padding-top:0; width:40px;height:44px; color: #FFFFFF; float: right;font-size: 14px; font-weight: bold; line-height: 25px; margin-top: -10px;text-align: center;background:url(images/discount.png) no-repeat scroll 0 0 transparent;">
+                        <div> <%# Eval("DiscountRate") %>% </div>
+                    </div>
+                    <div class="yoxview">
                      <a href="<%# Eval("ImageURL") %>" class="thumbnail">
                         <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
                     </a>
+                    </div>
                     <p;><%# Eval("Title") %></p>
                     <div style="margin: 5px 0 5px 0;">
                         <span class="label label-info" style="width:120px;font-size:large;padding:5px;">Rs. <%# Eval("DiscountedPrice") %>/=</span>
@@ -91,12 +97,14 @@
         <asp:Repeater ID="Repeater2" runat="server">
             <HeaderTemplate>
                 <div id="travel" class="span8 label label-info" style="margin-bottom:20px;">
-                    <div class="label label-info"><h5><i class="icon-list"></i> &nbsp Daily Deals</h5></div>
+                    <div class="label label-info"><h5><i class="icon-plane"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></h5></div>
                 </div>
             </HeaderTemplate>
             <ItemTemplate>
                 <div class="span2 well" style="text-align:center;">                    
-
+                    <div style="position:relative;right:-20px;top:20px; padding-top:0; width:40px;height:44px; color: #FFFFFF; float: right;font-size: 14px; font-weight: bold; line-height: 25px; margin-top: -10px;text-align: center;background:url(images/discount.png) no-repeat scroll 0 0 transparent;">
+                        <div> <%# Eval("DiscountRate") %>% </div>
+                    </div>
                      <a href="<%# Eval("ImageURL") %>" class="thumbnail">
                         <img class="lazy" src="img/grey.gif" data-original="<%# Eval("ImageURL") %>" alt="<%# Eval("Title") %>">
                     </a>
@@ -108,6 +116,7 @@
                         <span class="label label-warning" style="width:120px; text-decoration:line-through;font-size:large;padding:5px;">Rs. <%# Eval("Value") %>/=</span>
                     </div>
                     <a href="viewDeal.aspx?dealID=<%# Eval("DealID") %>" class="btn btn-success">View Deal <i class="icon-arrow"></i></a>
+                    <p></p>
                     
                 </div>
                 

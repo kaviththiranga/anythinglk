@@ -38,7 +38,15 @@ public partial class DynamicData_FieldTemplates_ImageUploadDataField_EditField :
             value += images[imgCount, 1] ;//+ ";";
             imgCount--;
         }
-        dictionary[Column.Name] = ConvertEditedValue(value);
+
+        if (value != "")
+        {
+            dictionary[Column.Name] = ConvertEditedValue(value);
+        }
+        else
+        {
+            dictionary[Column.Name] = ConvertEditedValue(TextBoxImages.Text);
+        }
 
         images = new string[10, 2];
         imgCount = 0;

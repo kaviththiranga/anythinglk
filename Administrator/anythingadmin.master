@@ -35,7 +35,7 @@
 <link href="<%= Page.ResolveUrl("~/Administrator/ico/favicon.ico") %>">
 <!--============ javascript ===========-->
 <script src="<%= Page.ResolveUrl("~/Administrator/js/jquery.js") %>"></script>
-<script src="<%= Page.ResolveUrl("~/Administrator/js/jquery-ui-1.8.16.custom.min.js") %>"></script>
+<script src="<%= Page.ResolveUrl("~/Administrator/js/jquery-ui-1.10.1.custom.js") %>"></script>
 <script src="<%= Page.ResolveUrl("~/Administrator/js/bootstrap.js") %>"></script>
  
 
@@ -201,6 +201,8 @@
         <% } %>
         </form>
     </div>
-
+    <div class="scroll-top" style="display: block;">
+		<a title="Go Top" class="tip-top" href="#"><i class="icon-double-angle-up"></i></a>
+	</div>
 </body>
 </html>

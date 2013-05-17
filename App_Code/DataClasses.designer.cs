@@ -1285,8 +1285,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 			}
 		}
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime")]
+
+    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_PlacedOn", DbType = "DateTime", IsDbGenerated = true)]
 	public System.Nullable<System.DateTime> PlacedOn
 	{
 		get
