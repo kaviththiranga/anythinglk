@@ -133,6 +133,40 @@ public class DealDAO : AbstractDAO
         return set;
     }
 
+    public  bool insertOrUpdate(WishList item)
+    {
+
+       
+        if (item.WishListItemID > 0)
+        {
+            return submitChanges();
+        }
+        else
+        {
+
+            db.WishLists.InsertOnSubmit(item);
+
+            return submitChanges();
+        }
+
+
+    }
+
+    public List<WishList> getWishList(User user) {
+
+        var query = from wishlist in db.WishLists where wishlist.UserID == user.UserID select wishlist;
+
+        List<WishList> list = new List<WishList>();
+
+        foreach (WishList wl in query) {
+            list.Add(wl);
+        }
+
+        return list;
+
+    }
+
+
     
 }
 

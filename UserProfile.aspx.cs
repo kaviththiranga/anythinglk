@@ -20,4 +20,30 @@ public partial class UserProfile : BasePage
         }
     }
 
+    [WebMethod]
+    public static string addToWishList(string dealID) {
+
+        if (!UserController.isLoggedIn()) {
+            return "Please Login First.";
+        }
+
+        WishList wl = new WishList();
+        wl.DealID = Convert.ToInt16(dealID);
+        wl.UserID = UserController.getCurrentUser().UserID;
+       
+        foreach(WishList wlI in DealsController.getWishList()){
+             if(wl.DealID == wlI.DealID){
+                 return "This Item is alreay in your wishlist.";
+            }
+        }
+       
+        if (DealsController.saveWishListItem(wl)) {
+
+            return "Successfully Added to wishlist.";
+        }
+
+        return "Oops! Something went wrong";
+
+    }
+
 }

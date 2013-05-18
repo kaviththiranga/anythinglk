@@ -73,8 +73,15 @@ public class AbstractDAO
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            return false;
+            Exception ex2 = e;
+            while (ex2.InnerException != null)
+            {
+                ex2 = ex2.InnerException;
+            }
+            Console.WriteLine(e.InnerException);
+            throw;
+            /*Console.WriteLine(e.StackTrace.ToString());
+            return false;*/
         }
     }
 }

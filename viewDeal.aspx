@@ -37,6 +37,11 @@
                     </br>
                 </div>
                 <div>
+                    <div style="margin: 5px 0 5px 0px;"><p id="msgP"></p></div>
+                    <div style="margin: 5px 0 15px 0px;">
+                        <a class="btn btn-success" href="#" id="addToWishList">Add to WishList</a>
+                        <a class="btn btn-primary" href="#" id="buyDeal">Buy a Voucher</a>
+                    </div>
                     <div style="margin: 5px 0 5px 0px;">
                         <p>Discounted Price&nbsp
                         <span class="label label-info" style="width:120px;font-size:large;padding:5px;">Rs. <%# Eval("DiscountedPrice") %>/=</span>
@@ -47,13 +52,13 @@
                         <span class="label label-error" style="width:120px; text-decoration:line-through;font-size:large;padding:5px;">Rs. <%# Eval("Value") %>/=</span>
                         </p>
                     </div
-                     <div style="margin: 5px 0 5px 0px;">
+                     <div style="margin: 5px 0 25px 0px;">
                         <p>You Save  &nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp  &nbsp
                         <span class="label label-warning" style="width:120px; text-decoration:underline;font-size:large;padding:5px;">Rs. <%= (selectedDeal.Value - selectedDeal.DiscountedPrice).ToString() %>/=</span>
                         </p>
                     </div
                      
-                    <div class="well" style="text-align:justify;">
+                    <div class="well" style="text-align:justify;margin: 15px 0 5px 0px;">
                         <%# Eval("OtherDesc") %>
                     </div>
                 </div>
@@ -76,5 +81,23 @@
 <asp:Content ID="Content7" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="FooterImports" Runat="Server">
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Add the page method call as an onclick handler for the div.
+            $("#addToWishList").click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "UserProfile.aspx/addToWishList",
+                    data: "{dealID:<%= selectedDeal.DealID %>}",
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (msg) {
+                        // Replace the div's content with the page method's return.
+                        $("#msgP").text(msg.d);
+                    }
+                });
+            });
+        });
+    </script>
 </asp:Content>
 

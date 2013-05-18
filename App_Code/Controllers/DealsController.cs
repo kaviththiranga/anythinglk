@@ -30,4 +30,17 @@ public class DealsController
     {
         return dao.getDealByDealID(dealID);
     }
+
+    public static bool saveWishListItem(WishList item) {
+        return dao.insertOrUpdate(item);
+    }
+
+    public static List<WishList> getWishList() {
+
+        if (UserController.isLoggedIn()) {
+
+           return dao.getWishList(UserController.getCurrentUser());
+        }
+        return null;
+    }
 }

@@ -44,6 +44,9 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertDeal(Deal instance);
   partial void UpdateDeal(Deal instance);
   partial void DeleteDeal(Deal instance);
+  partial void InsertWishList(WishList instance);
+  partial void UpdateWishList(WishList instance);
+  partial void DeleteWishList(WishList instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -113,6 +116,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<Deal>();
+		}
+	}
+	
+	public System.Data.Linq.Table<WishList> WishLists
+	{
+		get
+		{
+			return this.GetTable<WishList>();
 		}
 	}
 }
@@ -1285,8 +1296,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 			}
 		}
 	}
-
-    [global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_PlacedOn", DbType = "DateTime", IsDbGenerated = true)]
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime")]
 	public System.Nullable<System.DateTime> PlacedOn
 	{
 		get
@@ -1417,6 +1428,116 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.Deal = null;
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WishList")]
+public partial class WishList : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _WishListItemID;
+	
+	private int _UserID;
+	
+	private int _DealID;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWishListItemIDChanging(int value);
+    partial void OnWishListItemIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnDealIDChanging(int value);
+    partial void OnDealIDChanged();
+    #endregion
+	
+	public WishList()
+	{
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WishListItemID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int WishListItemID
+	{
+		get
+		{
+			return this._WishListItemID;
+		}
+		set
+		{
+			if ((this._WishListItemID != value))
+			{
+				this.OnWishListItemIDChanging(value);
+				this.SendPropertyChanging();
+				this._WishListItemID = value;
+				this.SendPropertyChanged("WishListItemID");
+				this.OnWishListItemIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+	public int UserID
+	{
+		get
+		{
+			return this._UserID;
+		}
+		set
+		{
+			if ((this._UserID != value))
+			{
+				this.OnUserIDChanging(value);
+				this.SendPropertyChanging();
+				this._UserID = value;
+				this.SendPropertyChanged("UserID");
+				this.OnUserIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", DbType="Int NOT NULL")]
+	public int DealID
+	{
+		get
+		{
+			return this._DealID;
+		}
+		set
+		{
+			if ((this._DealID != value))
+			{
+				this.OnDealIDChanging(value);
+				this.SendPropertyChanging();
+				this._DealID = value;
+				this.SendPropertyChanged("DealID");
+				this.OnDealIDChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591

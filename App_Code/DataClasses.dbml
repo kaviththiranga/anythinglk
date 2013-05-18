@@ -62,4 +62,11 @@
       <Association Name="Category_Deal" Member="Category" ThisKey="CatID" OtherKey="CatID" Type="Category" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.WishList" Member="WishLists">
+    <Type Name="WishList">
+      <Column Name="WishListItemID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="UserID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DealID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
 </Database>
