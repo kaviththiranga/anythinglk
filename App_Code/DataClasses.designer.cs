@@ -32,9 +32,6 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertCategory(Category instance);
   partial void UpdateCategory(Category instance);
   partial void DeleteCategory(Category instance);
-  partial void InsertOrder(Order instance);
-  partial void UpdateOrder(Order instance);
-  partial void DeleteOrder(Order instance);
   partial void InsertUser(User instance);
   partial void UpdateUser(User instance);
   partial void DeleteUser(User instance);
@@ -47,6 +44,9 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertWishList(WishList instance);
   partial void UpdateWishList(WishList instance);
   partial void DeleteWishList(WishList instance);
+  partial void InsertOrder(Order instance);
+  partial void UpdateOrder(Order instance);
+  partial void DeleteOrder(Order instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -87,14 +87,6 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Order> Orders
-	{
-		get
-		{
-			return this.GetTable<Order>();
-		}
-	}
-	
 	public System.Data.Linq.Table<User> Users
 	{
 		get
@@ -124,6 +116,14 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<WishList>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Order> Orders
+	{
+		get
+		{
+			return this.GetTable<Order>();
 		}
 	}
 }
@@ -266,270 +266,6 @@ public partial class Category : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Orders")]
-public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _OrderID;
-	
-	private int _UserID;
-	
-	private int _DealID;
-	
-	private int _Qty;
-	
-	private int _Total;
-	
-	private System.DateTime _PlacedOn;
-	
-	private EntityRef<User> _User;
-	
-	private EntityRef<Deal> _Deal;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnOrderIDChanging(int value);
-    partial void OnOrderIDChanged();
-    partial void OnUserIDChanging(int value);
-    partial void OnUserIDChanged();
-    partial void OnDealIDChanging(int value);
-    partial void OnDealIDChanged();
-    partial void OnQtyChanging(int value);
-    partial void OnQtyChanged();
-    partial void OnTotalChanging(int value);
-    partial void OnTotalChanged();
-    partial void OnPlacedOnChanging(System.DateTime value);
-    partial void OnPlacedOnChanged();
-    #endregion
-	
-	public Order()
-	{
-		this._User = default(EntityRef<User>);
-		this._Deal = default(EntityRef<Deal>);
-		OnCreated();
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", DbType="Int NOT NULL", IsPrimaryKey=true)]
-	public int OrderID
-	{
-		get
-		{
-			return this._OrderID;
-		}
-		set
-		{
-			if ((this._OrderID != value))
-			{
-				this.OnOrderIDChanging(value);
-				this.SendPropertyChanging();
-				this._OrderID = value;
-				this.SendPropertyChanged("OrderID");
-				this.OnOrderIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-	public int UserID
-	{
-		get
-		{
-			return this._UserID;
-		}
-		set
-		{
-			if ((this._UserID != value))
-			{
-				if (this._User.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnUserIDChanging(value);
-				this.SendPropertyChanging();
-				this._UserID = value;
-				this.SendPropertyChanged("UserID");
-				this.OnUserIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", DbType="Int NOT NULL")]
-	public int DealID
-	{
-		get
-		{
-			return this._DealID;
-		}
-		set
-		{
-			if ((this._DealID != value))
-			{
-				if (this._Deal.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnDealIDChanging(value);
-				this.SendPropertyChanging();
-				this._DealID = value;
-				this.SendPropertyChanged("DealID");
-				this.OnDealIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Qty", DbType="Int NOT NULL")]
-	public int Qty
-	{
-		get
-		{
-			return this._Qty;
-		}
-		set
-		{
-			if ((this._Qty != value))
-			{
-				this.OnQtyChanging(value);
-				this.SendPropertyChanging();
-				this._Qty = value;
-				this.SendPropertyChanged("Qty");
-				this.OnQtyChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Int NOT NULL")]
-	public int Total
-	{
-		get
-		{
-			return this._Total;
-		}
-		set
-		{
-			if ((this._Total != value))
-			{
-				this.OnTotalChanging(value);
-				this.SendPropertyChanging();
-				this._Total = value;
-				this.SendPropertyChanged("Total");
-				this.OnTotalChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL")]
-	public System.DateTime PlacedOn
-	{
-		get
-		{
-			return this._PlacedOn;
-		}
-		set
-		{
-			if ((this._PlacedOn != value))
-			{
-				this.OnPlacedOnChanging(value);
-				this.SendPropertyChanging();
-				this._PlacedOn = value;
-				this.SendPropertyChanged("PlacedOn");
-				this.OnPlacedOnChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Order", Storage="_User", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
-	public User User
-	{
-		get
-		{
-			return this._User.Entity;
-		}
-		set
-		{
-			User previousValue = this._User.Entity;
-			if (((previousValue != value) 
-						|| (this._User.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._User.Entity = null;
-					previousValue.Orders.Remove(this);
-				}
-				this._User.Entity = value;
-				if ((value != null))
-				{
-					value.Orders.Add(this);
-					this._UserID = value.UserID;
-				}
-				else
-				{
-					this._UserID = default(int);
-				}
-				this.SendPropertyChanged("User");
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_Order", Storage="_Deal", ThisKey="DealID", OtherKey="DealID", IsForeignKey=true)]
-	public Deal Deal
-	{
-		get
-		{
-			return this._Deal.Entity;
-		}
-		set
-		{
-			Deal previousValue = this._Deal.Entity;
-			if (((previousValue != value) 
-						|| (this._Deal.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._Deal.Entity = null;
-					previousValue.Orders.Remove(this);
-				}
-				this._Deal.Entity = value;
-				if ((value != null))
-				{
-					value.Orders.Add(this);
-					this._DealID = value.DealID;
-				}
-				else
-				{
-					this._DealID = default(int);
-				}
-				this.SendPropertyChanged("Deal");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Users")]
 public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -548,9 +284,9 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private string _Contact;
 	
-	private EntitySet<Order> _Orders;
-	
 	private EntitySet<Administrator> _Administrators;
+	
+	private EntitySet<Order> _Orders;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -572,8 +308,8 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	public User()
 	{
-		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 		this._Administrators = new EntitySet<Administrator>(new Action<Administrator>(this.attach_Administrators), new Action<Administrator>(this.detach_Administrators));
+		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
 		OnCreated();
 	}
 	
@@ -697,19 +433,6 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Order", Storage="_Orders", ThisKey="UserID", OtherKey="UserID")]
-	public EntitySet<Order> Orders
-	{
-		get
-		{
-			return this._Orders;
-		}
-		set
-		{
-			this._Orders.Assign(value);
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Administrator", Storage="_Administrators", ThisKey="UserID", OtherKey="UserID")]
 	public EntitySet<Administrator> Administrators
 	{
@@ -720,6 +443,19 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		set
 		{
 			this._Administrators.Assign(value);
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Order", Storage="_Orders", ThisKey="UserID", OtherKey="UserID")]
+	public EntitySet<Order> Orders
+	{
+		get
+		{
+			return this._Orders;
+		}
+		set
+		{
+			this._Orders.Assign(value);
 		}
 	}
 	
@@ -743,18 +479,6 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	private void attach_Orders(Order entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = this;
-	}
-	
-	private void detach_Orders(Order entity)
-	{
-		this.SendPropertyChanging();
-		entity.User = null;
-	}
-	
 	private void attach_Administrators(Administrator entity)
 	{
 		this.SendPropertyChanging();
@@ -762,6 +486,18 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Administrators(Administrator entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = null;
+	}
+	
+	private void attach_Orders(Order entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = this;
+	}
+	
+	private void detach_Orders(Order entity)
 	{
 		this.SendPropertyChanging();
 		entity.User = null;
@@ -1516,6 +1252,318 @@ public partial class WishList : INotifyPropertyChanging, INotifyPropertyChanged
 				this._DealID = value;
 				this.SendPropertyChanged("DealID");
 				this.OnDealIDChanged();
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Orders")]
+public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _OrderID;
+	
+	private int _UserID;
+	
+	private int _DealID;
+	
+	private int _Qty;
+	
+	private int _Total;
+	
+	private System.DateTime _PlacedOn;
+	
+	private string _Status;
+	
+	private System.DateTime _ExpiresOn;
+	
+	private EntityRef<Deal> _Deal;
+	
+	private EntityRef<User> _User;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnOrderIDChanging(int value);
+    partial void OnOrderIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnDealIDChanging(int value);
+    partial void OnDealIDChanged();
+    partial void OnQtyChanging(int value);
+    partial void OnQtyChanged();
+    partial void OnTotalChanging(int value);
+    partial void OnTotalChanged();
+    partial void OnPlacedOnChanging(System.DateTime value);
+    partial void OnPlacedOnChanged();
+    partial void OnStatusChanging(string value);
+    partial void OnStatusChanged();
+    partial void OnExpiresOnChanging(System.DateTime value);
+    partial void OnExpiresOnChanged();
+    #endregion
+	
+	public Order()
+	{
+		this._Deal = default(EntityRef<Deal>);
+		this._User = default(EntityRef<User>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int OrderID
+	{
+		get
+		{
+			return this._OrderID;
+		}
+		set
+		{
+			if ((this._OrderID != value))
+			{
+				this.OnOrderIDChanging(value);
+				this.SendPropertyChanging();
+				this._OrderID = value;
+				this.SendPropertyChanged("OrderID");
+				this.OnOrderIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+	public int UserID
+	{
+		get
+		{
+			return this._UserID;
+		}
+		set
+		{
+			if ((this._UserID != value))
+			{
+				if (this._User.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnUserIDChanging(value);
+				this.SendPropertyChanging();
+				this._UserID = value;
+				this.SendPropertyChanged("UserID");
+				this.OnUserIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", DbType="Int NOT NULL")]
+	public int DealID
+	{
+		get
+		{
+			return this._DealID;
+		}
+		set
+		{
+			if ((this._DealID != value))
+			{
+				if (this._Deal.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnDealIDChanging(value);
+				this.SendPropertyChanging();
+				this._DealID = value;
+				this.SendPropertyChanged("DealID");
+				this.OnDealIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Qty", DbType="Int NOT NULL")]
+	public int Qty
+	{
+		get
+		{
+			return this._Qty;
+		}
+		set
+		{
+			if ((this._Qty != value))
+			{
+				this.OnQtyChanging(value);
+				this.SendPropertyChanging();
+				this._Qty = value;
+				this.SendPropertyChanged("Qty");
+				this.OnQtyChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Int NOT NULL")]
+	public int Total
+	{
+		get
+		{
+			return this._Total;
+		}
+		set
+		{
+			if ((this._Total != value))
+			{
+				this.OnTotalChanging(value);
+				this.SendPropertyChanging();
+				this._Total = value;
+				this.SendPropertyChanged("Total");
+				this.OnTotalChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL", IsDbGenerated=true)]
+	public System.DateTime PlacedOn
+	{
+		get
+		{
+			return this._PlacedOn;
+		}
+		set
+		{
+			if ((this._PlacedOn != value))
+			{
+				this.OnPlacedOnChanging(value);
+				this.SendPropertyChanging();
+				this._PlacedOn = value;
+				this.SendPropertyChanged("PlacedOn");
+				this.OnPlacedOnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
+	public string Status
+	{
+		get
+		{
+			return this._Status;
+		}
+		set
+		{
+			if ((this._Status != value))
+			{
+				this.OnStatusChanging(value);
+				this.SendPropertyChanging();
+				this._Status = value;
+				this.SendPropertyChanged("Status");
+				this.OnStatusChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExpiresOn", DbType="DateTime NOT NULL")]
+	public System.DateTime ExpiresOn
+	{
+		get
+		{
+			return this._ExpiresOn;
+		}
+		set
+		{
+			if ((this._ExpiresOn != value))
+			{
+				this.OnExpiresOnChanging(value);
+				this.SendPropertyChanging();
+				this._ExpiresOn = value;
+				this.SendPropertyChanged("ExpiresOn");
+				this.OnExpiresOnChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_Order", Storage="_Deal", ThisKey="DealID", OtherKey="DealID", IsForeignKey=true)]
+	public Deal Deal
+	{
+		get
+		{
+			return this._Deal.Entity;
+		}
+		set
+		{
+			Deal previousValue = this._Deal.Entity;
+			if (((previousValue != value) 
+						|| (this._Deal.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Deal.Entity = null;
+					previousValue.Orders.Remove(this);
+				}
+				this._Deal.Entity = value;
+				if ((value != null))
+				{
+					value.Orders.Add(this);
+					this._DealID = value.DealID;
+				}
+				else
+				{
+					this._DealID = default(int);
+				}
+				this.SendPropertyChanged("Deal");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_Order", Storage="_User", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+	public User User
+	{
+		get
+		{
+			return this._User.Entity;
+		}
+		set
+		{
+			User previousValue = this._User.Entity;
+			if (((previousValue != value) 
+						|| (this._User.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._User.Entity = null;
+					previousValue.Orders.Remove(this);
+				}
+				this._User.Entity = value;
+				if ((value != null))
+				{
+					value.Orders.Add(this);
+					this._UserID = value.UserID;
+				}
+				else
+				{
+					this._UserID = default(int);
+				}
+				this.SendPropertyChanged("User");
 			}
 		}
 	}

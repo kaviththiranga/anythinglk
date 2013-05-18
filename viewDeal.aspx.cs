@@ -21,4 +21,8 @@ public partial class viewDeal : BasePage{
         Repeater1.DataSource = list;
         Repeater1.DataBind();
     }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Response.Redirect("~/purchase.aspx?dealID=" + selectedDeal.DealID);
+    }
 }

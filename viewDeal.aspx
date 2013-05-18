@@ -18,10 +18,10 @@
 	</ul>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
-    <div class="span11" style="padding:20px;">
+    <div class="span11 well" style="padding:20px;">
     <asp:Repeater ID="Repeater1" runat="server">
         <ItemTemplate>
-            <h4><%# Eval("Title")%></h4>
+            <h4 id="title"><%# Eval("Title")%></h4>
             </br>
             <div class="row">
                 <div class="span7" style="margin-right:20px;">
@@ -36,11 +36,12 @@
                     </br>
                     </br>
                 </div>
-                <div>
+                <div class="span4">
                     <div style="margin: 5px 0 5px 0px;"><p id="msgP"></p></div>
                     <div style="margin: 5px 0 15px 0px;">
-                        <a class="btn btn-success" href="#" id="addToWishList">Add to WishList</a>
-                        <a class="btn btn-primary" href="#" id="buyDeal">Buy a Voucher</a>
+                        <a class="btn btn-success" href="#title" id="addToWishList">Add to WishList</a>
+                        <a class="btn btn-primary" href="purchase.aspx?dealID=<%# Eval("DealID") %>" id="buyDeal">Buy a Voucher</a>
+
                     </div>
                     <div style="margin: 5px 0 5px 0px;">
                         <p>Discounted Price&nbsp
@@ -59,13 +60,13 @@
                     </div
                      
                     <div class="well" style="text-align:justify;margin: 15px 0 5px 0px;">
-                        <%# Eval("OtherDesc") %>
+                        <p><%# Eval("OtherDesc") %></p>
                     </div>
                 </div>
             </div>
             <div class="row"></div>
-            <div class="row">
-                <div><%# Eval("Terms") %></div>
+            <div class="row well">
+                <div><p><%# Eval("Terms") %></p></div>
 
             </div>
             
@@ -73,8 +74,9 @@
         </ItemTemplate>
 
     </asp:Repeater>
-        <div class="row"></div>
+       
      </div>
+     
 </asp:Content>
 
 

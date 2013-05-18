@@ -35,7 +35,8 @@ public class DealsController
         return dao.insertOrUpdate(item);
     }
 
-    public static List<WishList> getWishList() {
+    public static List<Deal> getWishList()
+    {
 
         if (UserController.isLoggedIn()) {
 

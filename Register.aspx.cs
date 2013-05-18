@@ -8,9 +8,11 @@ using System.Web.UI.WebControls;
 
 public partial class Register : BasePage
 {
+    protected string returnUrl;
+
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        returnUrl = (string)Request.QueryString["return"];
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
@@ -26,8 +28,13 @@ public partial class Register : BasePage
 
         Session["AlertMsg"] = "User successfully Registered. Please Sign in using ur credentials.";
         Session["AlertMsgClass"] = "alert-success";
-        Response.Redirect("Default.aspx");
 
+        if (returnUrl == null || returnUrl.Equals(""))
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+        Response.Redirect(returnUrl);
 
     }
 

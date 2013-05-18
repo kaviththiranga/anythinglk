@@ -82,6 +82,11 @@
 									<span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                                    <li><a href="MyWishList.aspx">
+											<i class="icon-th-list" style="margin-right: 2px;"></i>
+											Wish List
+										</a>
+									</li>	
 									<li><a href="UserProfile.aspx?edit=1">
 											<i class="icon-wrench" style="margin-right: 2px;"></i>
 											edit account

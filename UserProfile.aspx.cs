@@ -31,7 +31,7 @@ public partial class UserProfile : BasePage
         wl.DealID = Convert.ToInt16(dealID);
         wl.UserID = UserController.getCurrentUser().UserID;
        
-        foreach(WishList wlI in DealsController.getWishList()){
+        foreach(Deal wlI in DealsController.getWishList()){
              if(wl.DealID == wlI.DealID){
                  return "This Item is alreay in your wishlist.";
             }

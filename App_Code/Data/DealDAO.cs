@@ -152,14 +152,15 @@ public class DealDAO : AbstractDAO
 
     }
 
-    public List<WishList> getWishList(User user) {
+    public List<Deal> getWishList(User user)
+    {
 
         var query = from wishlist in db.WishLists where wishlist.UserID == user.UserID select wishlist;
 
-        List<WishList> list = new List<WishList>();
+        List<Deal> list = new List<Deal>();
 
         foreach (WishList wl in query) {
-            list.Add(wl);
+            list.Add(getDealByDealID(wl.DealID));
         }
 
         return list;
