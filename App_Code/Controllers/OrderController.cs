@@ -24,4 +24,9 @@ public class OrderController
         return dao.getOrdersByUserID(user.UserID);
     }
 
+    public static List<Order> getOrdersOfCurrentUser()
+    {
+        return dao.getOrdersByUserID(UserController.getCurrentUser().UserID);
+    }
+
 }

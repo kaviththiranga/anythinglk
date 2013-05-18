@@ -1291,7 +1291,7 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private int _Qty;
 	
-	private int _Total;
+	private double _Total;
 	
 	private System.DateTime _PlacedOn;
 	
@@ -1315,7 +1315,7 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
     partial void OnDealIDChanged();
     partial void OnQtyChanging(int value);
     partial void OnQtyChanged();
-    partial void OnTotalChanging(int value);
+    partial void OnTotalChanging(double value);
     partial void OnTotalChanged();
     partial void OnPlacedOnChanging(System.DateTime value);
     partial void OnPlacedOnChanged();
@@ -1420,8 +1420,8 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Int NOT NULL")]
-	public int Total
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Total", DbType="Float NOT NULL")]
+	public double Total
 	{
 		get
 		{
@@ -1440,7 +1440,7 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL", IsDbGenerated=true)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL",IsDbGenerated=true)]
 	public System.DateTime PlacedOn
 	{
 		get

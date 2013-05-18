@@ -13,7 +13,7 @@
     <ul class="breadcrumb" style="background-color: transparent;">
 		<li>You are here<span class="divider">/</span></li>
 	    <li><a href="Default.aspx">Home</a> <span class="divider">/</span></li>
-        <li><a href="purchase.aspx">Purchase Voucher</a><span class="divider">/</span></li>
+        <li><a href="#">Purchase Voucher</a><span class="divider">/</span></li>
 	    <li class="active"><a href="viewDeal.aspx?dealID=<%= purchasingDeal.DealID %>"><%= purchasingDeal.Title %></a></li>
 	</ul>
 </asp:Content>
@@ -24,7 +24,7 @@
 
         <% if (!UserController.isLoggedIn()) { %>
             <div style="text-align:center">
-                    </br>
+                    <br/>
                    <h4>Please Login First</h4>
                 <a href="Register.aspx?return=<%= Request.RawUrl %>" class="btn btn-link"><asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, RegisterLabel  %>" /></a>
                 <a href="#loginModal" role="button" data-toggle="modal" class="btn btn-link"><asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" /></a>
@@ -72,6 +72,16 @@
                             ControlToValidate="inputContact" ErrorMessage="Required field cannot be left blank."
                             Display="Dynamic">
                         </asp:RequiredFieldValidator>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="total">Payment Method</label>
+                    <div class="controls">
+                        <asp:RadioButton ID="RadioButton1" runat="server" Text="Pay Cash" Checked="true"/>                     
+                        
+                        <span class="help-inline">
+                            <asp:Label ID="Label3" CssClass="text-error" runat="server" Text="">(to Anything.lk Counter)</asp:Label>
+                        </span>
                     </div>
                 </div>
                 <div class="control-group">

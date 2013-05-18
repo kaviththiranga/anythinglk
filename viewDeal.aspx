@@ -13,7 +13,7 @@
     <ul class="breadcrumb" style="background-color: transparent;">
 		<li>You are here<span class="divider">/</span></li>
 	    <li><a href="Default.aspx">Home</a> <span class="divider">/</span></li>
-        <li><a href="viewDeal.aspx">View Deal</a><span class="divider">/</span></li>
+        <li><a href="#">View Deal</a><span class="divider">/</span></li>
 	    <li class="active"><a href="viewDeal.aspx?dealID=<%= selectedDeal.DealID %>"><%= selectedDeal.Title %></a></li>
 	</ul>
 </asp:Content>
