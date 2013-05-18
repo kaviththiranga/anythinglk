@@ -30,6 +30,7 @@
 	</ul>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
+    <div class="span9 well">
     <div class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputFirstName"><asp:Literal ID="Literal44" runat="server" Text="<%$ Resources:LangResources, FirstNameText  %>" /></label>
@@ -74,6 +75,19 @@
             <label class="control-label" for="inputPassword"><asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
             <div class="controls">
                 <asp:TextBox ID="inputPassword" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
+                <ajaxToolkit:PasswordStrength ID="PS" runat="server"
+                            TargetControlID="inputPassword"
+                            DisplayPosition="RightSide"
+                            StrengthIndicatorType="Text"
+                            PreferredPasswordLength="8"
+                            PrefixText="Strength:"
+                            TextCssClass="label"
+                            MinimumNumericCharacters="1"
+                            MinimumSymbolCharacters="1"
+                            RequiresUpperAndLowerCaseCharacters="false"
+                            TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"
+                            TextStrengthDescriptionStyles="label-error;label-important;label-warning;label-success;label-info"
+                            CalculationWeightings="50;15;15;20" />
                 <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorPassword" runat="server"
                     ControlToValidate="inputPassword" ErrorMessage="Required field cannot be left blank."
                     Display="Dynamic">
@@ -115,6 +129,7 @@
             </div>
         </div>
     </div>
+     </div>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div class="btn-group btn-group-vertical">

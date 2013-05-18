@@ -12,12 +12,6 @@
     <div><asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, termscondtions  %>" /></div>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
-    <div class="btn-group btn-group-vertical">
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-shopping-cart"></i> <asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal6" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></button>
-    </div>
+
 </asp:Content>
 

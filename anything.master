@@ -13,6 +13,7 @@
     </title>
 </head>
 <body>
+    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1"  EnablePartialRendering="false" runat="server" />
      <div id="PageDiv" class="container">
 
         <form id="PageForm" runat="server">
@@ -166,11 +167,11 @@
 
             <!-- Start of content area -->
             
-                <div class="span9 well">
+                
                 <asp:ContentPlaceHolder id="ContentAreaPlaceHolder" runat="server">
                 
                 </asp:ContentPlaceHolder> 
-                </div>
+                
             
             <!-- End of content area -->
             
