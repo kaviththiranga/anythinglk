@@ -2,26 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">    
     <style type="text/css">
-        .rounded_corners
-        {
-            border: 1px solid #A1DCF2;
-            -webkit-border-radius: 8px;
-            -moz-border-radius: 8px;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .rounded_corners td, .rounded_corners th
-        {
-            border: 1px solid #A1DCF2;
-            font-family: Arial;
-            font-size: 10pt;
-            text-align: center;
-            padding:6px 20px 6px 20px;
-        }
-        .rounded_corners table table td
-        {
-            border-style: none;
-        }
+       .rounded_corners{border:1px solid#A1DCF2;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;overflow:hidden}.rounded_corners td,.rounded_corners th{border:1px solid#A1DCF2;font-family:Arial;font-size:10pt;text-align:center;padding:6px 20px 6px 20px}.rounded_corners table table td{border-style:none}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="title" Runat="Server">

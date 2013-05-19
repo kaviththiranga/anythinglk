@@ -13,11 +13,11 @@
     </title>
 </head>
 <body>
-    <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1"  EnablePartialRendering="false" runat="server" />
+    
      <div id="PageDiv" class="container">
 
         <form id="PageForm" runat="server">
-
+            <ajaxToolkit:ToolkitScriptManager ID="ToolkitScriptManager1"  EnablePartialRendering="true" runat="server" />
             <div id="loginModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -28,7 +28,8 @@
                         <div class="control-group">
                             <label class="control-label" for="inputEmail"><asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
                             <div class="controls">
-                                <asp:TextBox ID="inputEmailModal"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
+                                <asp:TextBox ID="inputEmailModal" ValidationGroup="reset"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" ControlToValidate="inputEmailModal" runat="server" ErrorMessage="Please enter a valid email"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="control-group">
@@ -41,7 +42,8 @@
                 </div>
                 <div class="modal-footer">
                     <a href="#" data-dismiss="modal" class="btn">Close</a>
-                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" OnClick="Signin_Click" />
+                    <asp:Button CssClass="btn btn-primary"  ID="SigninButtonModal" ValidationGroup="reset" runat="server" Text="<%$ Resources:LangResources, SignInLabel  %>" OnClick="Signin_Click" />
+                    <asp:Button CssClass="btn btn-primary" ValidationGroup="reset"   ID="ForgotPassword" runat="server" Text="Forgot Password" OnClick="ForgotPassword_Click" />
                 </div>
             </div>
         <!-- start of header -->
@@ -87,7 +89,7 @@
 											Wish List
 										</a>
 									</li>	
-									<li><a href="UserProfile.aspx?edit=1">
+									<li><a href="EditProfile.aspx">
 											<i class="icon-wrench" style="margin-right: 2px;"></i>
 											edit account
 										</a>
@@ -138,9 +140,9 @@
                     <a class="brand" href="#">Anything.lk</a>
                     <ul class="nav">
                         <li id="homenav"><a href="Default.aspx"><i class="icon-home "></i> <asp:Literal ID="Literal2" runat="server" Text="<%$ Resources:LangResources, HomeButtonLabel  %>" /></a></li>
-                        <li id="dailydealsnav"><a href="#"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a></li> 
-                        <li id="eventsnav"><a href="#"><i class="icon-calendar "></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a></li>
-                        <li id="travelnav"><a href="#"><i class="icon-plane "></i> <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a></li>
+                        <li id="dailydealsnav"><a href="CatView.aspx?catID=1"><i class="icon-list "></i> <asp:Literal ID="Literal1" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></a></li> 
+                        <li id="eventsnav"><a href="CatView.aspx?catID=3"><i class="icon-calendar "></i> <asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></a></li>
+                        <li id="travelnav"><a href="CatView.aspx?catID=4"><i class="icon-plane "></i> <asp:Literal ID="Literal5" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></a></li>
                         <li id="booksnav"><a href="#"><i class="icon-book "></i> <asp:Literal ID="Literal6" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></a></li>
                     </ul>
                 </div>
@@ -207,25 +209,13 @@
     
     <script type="text/javascript" src="bootstrap/js/JQuery.js"></script>
     <script type="text/javascript" src="bootstrap/js/LazyLoad.js"></script>
-    <script type="text/javascript" src="bootstrap/js/bootstrap.js"></script> 
+    <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script> 
     <script type="text/javascript" src="bootstrap/js/yoxview-init.js"></script>
     <script type="text/javascript">
         (function ($) { $(document).ready(function () { $(window).scroll(function () { if ($(this).scrollTop() > 100) { $('.scrollup').fadeIn() } else { $('.scrollup').fadeOut() } }); $('.scrollup').click(function () { $("html, body").animate({ scrollTop: 0 }, 600); return false }) }) })(jQuery); (function ($) { $(document).ready(function () { $('#NavPanelDiv li').hover(function () { $(this).find('i').addClass('icon-large') }, function () { $(this).find('i').removeClass('icon-large') }) }) })(jQuery);
     </script>
     <script type="text/javascript">
-        (function ($) {
-            $(document).ready(function () {
-                $("img.lazy").lazyload({
-                    effect: "fadeIn"
-                });
-            })
-        })(jQuery);
-
-        jQuery(document).ready(function ($) {
-            // Uncomment the following line if you use an additional Javascript library (likr Prototype, for example) in the same page as YoxView:
-            // jQuery.noConflict();
-            $(".yoxview").yoxview();
-        });
+        (function ($) { $(document).ready(function () { $("img.lazy").lazyload({ effect: "fadeIn" }) }) })(jQuery); jQuery(document).ready(function ($) { $(".yoxview").yoxview() });
     </script>
 
     <asp:ContentPlaceHolder id="FooterImports" runat="server">

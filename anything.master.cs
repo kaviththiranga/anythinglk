@@ -78,4 +78,15 @@ public partial class anything : System.Web.UI.MasterPage
         Session["Theme"] = ThemeDropDown.SelectedValue;
         Response.Redirect(Request.RawUrl);
     }
+    protected void ForgotPassword_Click(object sender, EventArgs e)
+    {
+        if(!inputEmailModal.Text.Equals("")){
+            Session["AlertMsg"] = "Check your email for password reset link. Thank you.";
+            Session["AlertMsgClass"] = "alert-success";
+
+            //Send an email to user with password token
+        }
+
+
+    }
 }

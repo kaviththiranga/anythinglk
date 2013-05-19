@@ -12,6 +12,12 @@ public partial class Register : BasePage
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (UserController.isLoggedIn()) {
+
+            Response.Redirect("~/userProfile.aspx");
+            Session["AlertMsg"] = "Ooops! You are already registered.";
+            Session["AlertMsgClass"] = "alert-info";
+        }
         returnUrl = (string)Request.QueryString["return"];
     }
     protected void Button1_Click(object sender, EventArgs e)

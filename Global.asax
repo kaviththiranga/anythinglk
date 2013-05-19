@@ -21,7 +21,7 @@
             {
                 Constraints = new RouteValueDictionary(new
                 {
-                    action = "List|Details|Edit|Insert"
+                    action = "List|Details|Edit|Insert|ProfileDetails"
                 }),
                 Model = DefaultModel
             });

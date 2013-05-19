@@ -83,23 +83,7 @@
 <asp:Content ID="Content7" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content8" ContentPlaceHolderID="FooterImports" Runat="Server">
-    <script type="text/javascript">
-        $(document).ready(function () {
-            // Add the page method call as an onclick handler for the div.
-            $("#addToWishList").click(function () {
-                $.ajax({
-                    type: "POST",
-                    url: "UserProfile.aspx/addToWishList",
-                    data: "{dealID:<%= selectedDeal.DealID %>}",
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (msg) {
-                        // Replace the div's content with the page method's return.
-                        $("#msgP").text(msg.d);
-                    }
-                });
-            });
-        });
+    <script type="text/javascript">$(document).ready(function () { $("#addToWishList").click(function () { $.ajax({ type: "POST", url: "UserProfile.aspx/addToWishList", data: "{dealID:<%= selectedDeal.DealID %>}", contentType: "application/json; charset=utf-8", dataType: "json", success: function (a) { $("#msgP").text(a.d) } }) }) });
     </script>
 </asp:Content>
 

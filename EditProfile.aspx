@@ -1,22 +1,16 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/anything.master" AutoEventWireup="true" CodeFile="Register.aspx.cs" Inherits="Register" %>
-<%@ MasterType  virtualPath="~/anything.master"%>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/anything.master" AutoEventWireup="true" CodeFile="EditProfile.aspx.cs" Inherits="EditProfile" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
-    <script type="text/javascript">
-        function emailvalidate(b, c) { $.ajax({ type: "POST", url: "Register.aspx/isEmailNotRegistered", data: "{'email': '" + c.Value + "'}", contentType: "application/json; charset=utf-8", dataType: "json", async: false, success: function (a) { c.IsValid = a.d } }) }    
-    </script>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
+<asp:Content ID="Content2" ContentPlaceHolderID="title" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="CartInfoPlaceHolder" Runat="Server">
+<asp:Content ID="Content3" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content4" ContentPlaceHolderID="SildeShowContentPlaceHolder" Runat="Server">
-    <ul class="breadcrumb" style="background-color: transparent;">
-		<li>You are here<span class="divider">/</span></li>
-	    <li><a href="Default.aspx">Home</a> <span class="divider">/</span></li>
-	    <li class="active"><a href="Register.aspx">Register</a></li>
-	</ul>
+<asp:Content ID="Content4" ContentPlaceHolderID="CartInfoPlaceHolder" Runat="Server">
 </asp:Content>
-<asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
+<asp:Content ID="Content5" ContentPlaceHolderID="SildeShowContentPlaceHolder" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content6" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
     <div class="span9 well">
     <div class="form-horizontal">
         <div class="control-group">
@@ -35,26 +29,6 @@
                 <asp:TextBox ID="inputLastName"  runat="server" placeholder="<%$ Resources:LangResources, LastNameText  %>"></asp:TextBox>
                 <span class="help-inline">
                     <asp:Label ID="inputLastNameHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
-                </span>
-            </div>
-        </div>
-        
-        <div class="control-group">
-            <label class="control-label" for="inputEmail"><asp:Literal ID="Literal3" runat="server" Text="<%$ Resources:LangResources, EmailText  %>" /></label>
-            <div class="controls">
-                <asp:TextBox ID="inputEmail"  runat="server" placeholder="<%$ Resources:LangResources, EmailText  %>"></asp:TextBox>
-                <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorEmail" runat="server"
-                    ControlToValidate="inputEmail" ErrorMessage="Required field cannot be left blank."
-                    Display="Dynamic">
-                </asp:RequiredFieldValidator>
-                <asp:RegularExpressionValidator validationgroup="RegistrationForm" ID="RegularExpressionValidatorEmail" runat="server" CssClass="text-error"
-                    ErrorMessage="Invalid email address." ControlToValidate="inputEmail"
-                    ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
-                    Display="Dynamic">
-                </asp:RegularExpressionValidator>
-                <span class="help-inline">
-                     <asp:CustomValidator ID="CustomValidatorEmail" validationgroup="RegistrationForm" CssClass="text-error" ControlToValidate="inputEmail" ClientValidationFunction="emailvalidate" runat="server" ErrorMessage="This Email is already registered"></asp:CustomValidator>
-                    <asp:Label ID="inputEmailHelp" CssClass="text-error" runat="server" Text=""></asp:Label>
                 </span>
             </div>
         </div>
@@ -112,19 +86,14 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <asp:Button ID="Button1" validationgroup="RegistrationForm" CssClass="btn btn-link" runat="server" Text="<%$ Resources:LangResources, RegisterLabel  %>" OnClick="Button1_Click" />
+                <asp:Button ID="Button1" validationgroup="RegistrationForm" CssClass="btn btn-link" runat="server" Text="Update" OnClick="Button1_Click" />
             </div>
         </div>
     </div>
      </div>
 </asp:Content>
-<asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
-    <div class="btn-group btn-group-vertical">
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-list"></i> <asp:Literal ID="Literal7" runat="server" Text="<%$ Resources:LangResources, DailyDealsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-shopping-cart"></i> <asp:Literal ID="Literal8" runat="server" Text="<%$ Resources:LangResources, StoreLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-calendar"></i> <asp:Literal ID="Literal9" runat="server" Text="<%$ Resources:LangResources, EventsLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-plane"></i> <asp:Literal ID="Literal10" runat="server" Text="<%$ Resources:LangResources, TravelLabel  %>" /></button>
-        <button class="btn" style="width:150px;text-align:left;background:lightgray;"><i class="icon-book"></i> <asp:Literal ID="Literal11" runat="server" Text="<%$ Resources:LangResources, BooksLabel  %>" /></button>
-    </div>
+<asp:Content ID="Content7" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
+</asp:Content>
+<asp:Content ID="Content8" ContentPlaceHolderID="FooterImports" Runat="Server">
 </asp:Content>
 

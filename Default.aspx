@@ -163,13 +163,6 @@
         });
     </script>
     <script type="text/javascript">
-        (function ($) {
-            $('#JumpLinks a').click(function () {
-                $('html, body').animate({
-                    scrollTop: $($.attr(this, 'href')).offset().top
-                }, 500);
-                return false;
-            });
-        })(jQuery);
+        (function ($) { $('#JumpLinks a').click(function () { $('html, body').animate({ scrollTop: $($.attr(this, 'href')).offset().top }, 500); return false }) })(jQuery);
     </script>
 </asp:Content>
