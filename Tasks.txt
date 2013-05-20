@@ -14,6 +14,7 @@ sub pages display
 shopping cart
 ER Diagram
 
+Caching
 add to wish list
 placedon auto generate
 page level cahce
@@ -122,3 +123,9 @@ http://stackoverflow.com/questions/10102743/gzip-response-on-iis-express
 appcmd set config /section:staticContent /+[fileExtension='.js',mimeType='application/json'] 
 
 http://bibword.codeplex.com/releases/view/15852
+
+http://programmers.stackexchange.com/questions/102090/why-isnt-java-used-for-modern-web-application-development
+
+http://vandelaydesign.com/blog/web-development/advantages-of-php/
+
+http://it.toolbox.com/blogs/lim/net-vs-j2ee-java-ee-architectural-philosophy-11290

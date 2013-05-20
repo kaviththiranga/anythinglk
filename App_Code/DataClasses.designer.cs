@@ -41,12 +41,12 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
   partial void InsertDeal(Deal instance);
   partial void UpdateDeal(Deal instance);
   partial void DeleteDeal(Deal instance);
-  partial void InsertWishList(WishList instance);
-  partial void UpdateWishList(WishList instance);
-  partial void DeleteWishList(WishList instance);
   partial void InsertOrder(Order instance);
   partial void UpdateOrder(Order instance);
   partial void DeleteOrder(Order instance);
+  partial void InsertWishList(WishList instance);
+  partial void UpdateWishList(WishList instance);
+  partial void DeleteWishList(WishList instance);
   #endregion
 	
 	public DataClassesDataContext() : 
@@ -111,19 +111,19 @@ public partial class DataClassesDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<WishList> WishLists
-	{
-		get
-		{
-			return this.GetTable<WishList>();
-		}
-	}
-	
 	public System.Data.Linq.Table<Order> Orders
 	{
 		get
 		{
 			return this.GetTable<Order>();
+		}
+	}
+	
+	public System.Data.Linq.Table<WishList> WishLists
+	{
+		get
+		{
+			return this.GetTable<WishList>();
 		}
 	}
 }
@@ -288,6 +288,8 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<Order> _Orders;
 	
+	private EntitySet<WishList> _WishLists;
+	
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -310,6 +312,7 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this._Administrators = new EntitySet<Administrator>(new Action<Administrator>(this.attach_Administrators), new Action<Administrator>(this.detach_Administrators));
 		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+		this._WishLists = new EntitySet<WishList>(new Action<WishList>(this.attach_WishLists), new Action<WishList>(this.detach_WishLists));
 		OnCreated();
 	}
 	
@@ -459,6 +462,19 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_WishList", Storage="_WishLists", ThisKey="UserID", OtherKey="UserID")]
+	public EntitySet<WishList> WishLists
+	{
+		get
+		{
+			return this._WishLists;
+		}
+		set
+		{
+			this._WishLists.Assign(value);
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -498,6 +514,18 @@ public partial class User : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 	
 	private void detach_Orders(Order entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = null;
+	}
+	
+	private void attach_WishLists(WishList entity)
+	{
+		this.SendPropertyChanging();
+		entity.User = this;
+	}
+	
+	private void detach_WishLists(WishList entity)
 	{
 		this.SendPropertyChanging();
 		entity.User = null;
@@ -697,6 +725,8 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<Order> _Orders;
 	
+	private EntitySet<WishList> _WishLists;
+	
 	private EntityRef<Administrator> _Administrator;
 	
 	private EntityRef<Category> _Category;
@@ -740,6 +770,7 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 	public Deal()
 	{
 		this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+		this._WishLists = new EntitySet<WishList>(new Action<WishList>(this.attach_WishLists), new Action<WishList>(this.detach_WishLists));
 		this._Administrator = default(EntityRef<Administrator>);
 		this._Category = default(EntityRef<Category>);
 		OnCreated();
@@ -1066,6 +1097,19 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_WishList", Storage="_WishLists", ThisKey="DealID", OtherKey="DealID")]
+	public EntitySet<WishList> WishLists
+	{
+		get
+		{
+			return this._WishLists;
+		}
+		set
+		{
+			this._WishLists.Assign(value);
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Administrator_Deal", Storage="_Administrator", ThisKey="PostedBy", OtherKey="AdminID", IsForeignKey=true)]
 	public Administrator Administrator
 	{
@@ -1165,115 +1209,17 @@ public partial class Deal : INotifyPropertyChanging, INotifyPropertyChanged
 		this.SendPropertyChanging();
 		entity.Deal = null;
 	}
-}
-
-[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WishList")]
-public partial class WishList : INotifyPropertyChanging, INotifyPropertyChanged
-{
 	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _WishListItemID;
-	
-	private int _UserID;
-	
-	private int _DealID;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnWishListItemIDChanging(int value);
-    partial void OnWishListItemIDChanged();
-    partial void OnUserIDChanging(int value);
-    partial void OnUserIDChanged();
-    partial void OnDealIDChanging(int value);
-    partial void OnDealIDChanged();
-    #endregion
-	
-	public WishList()
+	private void attach_WishLists(WishList entity)
 	{
-		OnCreated();
+		this.SendPropertyChanging();
+		entity.Deal = this;
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WishListItemID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int WishListItemID
+	private void detach_WishLists(WishList entity)
 	{
-		get
-		{
-			return this._WishListItemID;
-		}
-		set
-		{
-			if ((this._WishListItemID != value))
-			{
-				this.OnWishListItemIDChanging(value);
-				this.SendPropertyChanging();
-				this._WishListItemID = value;
-				this.SendPropertyChanged("WishListItemID");
-				this.OnWishListItemIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
-	public int UserID
-	{
-		get
-		{
-			return this._UserID;
-		}
-		set
-		{
-			if ((this._UserID != value))
-			{
-				this.OnUserIDChanging(value);
-				this.SendPropertyChanging();
-				this._UserID = value;
-				this.SendPropertyChanged("UserID");
-				this.OnUserIDChanged();
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", DbType="Int NOT NULL")]
-	public int DealID
-	{
-		get
-		{
-			return this._DealID;
-		}
-		set
-		{
-			if ((this._DealID != value))
-			{
-				this.OnDealIDChanging(value);
-				this.SendPropertyChanging();
-				this._DealID = value;
-				this.SendPropertyChanged("DealID");
-				this.OnDealIDChanged();
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
+		this.SendPropertyChanging();
+		entity.Deal = null;
 	}
 }
 
@@ -1440,7 +1386,7 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL",IsDbGenerated=true)]
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlacedOn", DbType="DateTime NOT NULL")]
 	public System.DateTime PlacedOn
 	{
 		get
@@ -1557,6 +1503,198 @@ public partial class Order : INotifyPropertyChanging, INotifyPropertyChanged
 				if ((value != null))
 				{
 					value.Orders.Add(this);
+					this._UserID = value.UserID;
+				}
+				else
+				{
+					this._UserID = default(int);
+				}
+				this.SendPropertyChanged("User");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.WishList")]
+public partial class WishList : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _WishListItemID;
+	
+	private int _UserID;
+	
+	private int _DealID;
+	
+	private EntityRef<Deal> _Deal;
+	
+	private EntityRef<User> _User;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnWishListItemIDChanging(int value);
+    partial void OnWishListItemIDChanged();
+    partial void OnUserIDChanging(int value);
+    partial void OnUserIDChanged();
+    partial void OnDealIDChanging(int value);
+    partial void OnDealIDChanged();
+    #endregion
+	
+	public WishList()
+	{
+		this._Deal = default(EntityRef<Deal>);
+		this._User = default(EntityRef<User>);
+		OnCreated();
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WishListItemID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int WishListItemID
+	{
+		get
+		{
+			return this._WishListItemID;
+		}
+		set
+		{
+			if ((this._WishListItemID != value))
+			{
+				this.OnWishListItemIDChanging(value);
+				this.SendPropertyChanging();
+				this._WishListItemID = value;
+				this.SendPropertyChanged("WishListItemID");
+				this.OnWishListItemIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="Int NOT NULL")]
+	public int UserID
+	{
+		get
+		{
+			return this._UserID;
+		}
+		set
+		{
+			if ((this._UserID != value))
+			{
+				if (this._User.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnUserIDChanging(value);
+				this.SendPropertyChanging();
+				this._UserID = value;
+				this.SendPropertyChanged("UserID");
+				this.OnUserIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DealID", DbType="Int NOT NULL")]
+	public int DealID
+	{
+		get
+		{
+			return this._DealID;
+		}
+		set
+		{
+			if ((this._DealID != value))
+			{
+				if (this._Deal.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnDealIDChanging(value);
+				this.SendPropertyChanging();
+				this._DealID = value;
+				this.SendPropertyChanged("DealID");
+				this.OnDealIDChanged();
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Deal_WishList", Storage="_Deal", ThisKey="DealID", OtherKey="DealID", IsForeignKey=true)]
+	public Deal Deal
+	{
+		get
+		{
+			return this._Deal.Entity;
+		}
+		set
+		{
+			Deal previousValue = this._Deal.Entity;
+			if (((previousValue != value) 
+						|| (this._Deal.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._Deal.Entity = null;
+					previousValue.WishLists.Remove(this);
+				}
+				this._Deal.Entity = value;
+				if ((value != null))
+				{
+					value.WishLists.Add(this);
+					this._DealID = value.DealID;
+				}
+				else
+				{
+					this._DealID = default(int);
+				}
+				this.SendPropertyChanged("Deal");
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.AssociationAttribute(Name="User_WishList", Storage="_User", ThisKey="UserID", OtherKey="UserID", IsForeignKey=true)]
+	public User User
+	{
+		get
+		{
+			return this._User.Entity;
+		}
+		set
+		{
+			User previousValue = this._User.Entity;
+			if (((previousValue != value) 
+						|| (this._User.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._User.Entity = null;
+					previousValue.WishLists.Remove(this);
+				}
+				this._User.Entity = value;
+				if ((value != null))
+				{
+					value.WishLists.Add(this);
 					this._UserID = value.UserID;
 				}
 				else
