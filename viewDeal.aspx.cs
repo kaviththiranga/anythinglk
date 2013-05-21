@@ -11,9 +11,16 @@ public partial class viewDeal : BasePage{
 
     protected void Page_Load(object sender, EventArgs e)
     {
+
         int dealID = Convert.ToInt16( Request.QueryString["dealID"]);
 
         selectedDeal = DealsController.getDealByDealID(dealID);
+
+        TimeSpan time = (selectedDeal.ExpiresOn).Subtract(DateTime.Now);
+
+        string format = "HH mm ss";
+
+        Label1.Text = new DateTime((long)time.Ticks).ToString(format);
 
         List<Deal> list = new List<Deal>();
         list.Add(selectedDeal);

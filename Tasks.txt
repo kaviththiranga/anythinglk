@@ -14,6 +14,7 @@ sub pages display
 shopping cart
 ER Diagram
 
+Count Down
 Caching
 add to wish list
 placedon auto generate
@@ -129,3 +130,12 @@ http://programmers.stackexchange.com/questions/102090/why-isnt-java-used-for-mod
 http://vandelaydesign.com/blog/web-development/advantages-of-php/
 
 http://it.toolbox.com/blogs/lim/net-vs-j2ee-java-ee-architectural-philosophy-11290
+
+http://www.slideshare.net/talentica/developing-a-product-java-or-net
+http://it.toolbox.com/blogs/lim/net-vs-j2ee-java-ee-architectural-philosophy-11290
+
+http://www.tutorialspoint.com/uml/uml_activity_diagram.htm
+
+<staticContent>
+            <clientCache cacheControlMode="UseMaxAge" cacheControlMaxAge="7.00:00:00" />
+        </staticContent>

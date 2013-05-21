@@ -58,6 +58,8 @@
                         <span class="label label-warning" style="width:120px; text-decoration:underline;font-size:large;padding:5px;">Rs. <%= (selectedDeal.Value - selectedDeal.DiscountedPrice).ToString() %>/=</span>
                         </p>
                     </div
+                         
+                        
                      
                     <div class="well" style="text-align:justify;margin: 15px 0 5px 0px;">
                         <p><%# Eval("OtherDesc") %></p>
@@ -74,6 +76,17 @@
         </ItemTemplate>
 
     </asp:Repeater>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                <p style="word-spacing: 42px;">
+                    <asp:Label ID="Label1" runat="server"></asp:Label>
+                </p>
+
+                <asp:Timer ID="Timer1" runat="server" Interval="1000"></asp:Timer>
+
+            </ContentTemplate>
+
+        </asp:UpdatePanel>
        
      </div>
      
