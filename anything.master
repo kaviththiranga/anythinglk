@@ -1,4 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="anything.master.cs" Inherits="anything" %>
+<!--<%@ OutputCache Duration="60" VaryByParam="*" %>-->
 
 <!DOCTYPE html>
 
