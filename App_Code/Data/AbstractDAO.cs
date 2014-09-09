@@ -10,13 +10,16 @@ using System.Web;
 /// </summary>
 public class AbstractDAO
 {
-    protected DataClassesDataContext db;
+    protected static DataClassesDataContext db;
 
     protected bool isCacheValid;
 
+    static AbstractDAO() {
+        db = new DataClassesDataContext();
+    }
 	public AbstractDAO()
 	{
-        db = new DataClassesDataContext();
+        
         isCacheValid = false;
 	}
 
@@ -73,8 +76,15 @@ public class AbstractDAO
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            return false;
+            Exception ex2 = e;
+            while (ex2.InnerException != null)
+            {
+                ex2 = ex2.InnerException;
+            }
+            Console.WriteLine(e.InnerException);
+            throw;
+            /*Console.WriteLine(e.StackTrace.ToString());
+            return false;*/
         }
     }
 }

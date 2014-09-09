@@ -2,20 +2,7 @@
 <%@ MasterType  virtualPath="~/anything.master"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
     <script type="text/javascript">
-        function emailvalidate(src, args) {
-            $.ajax({
-                type: "POST",
-                url: "Register.aspx/isEmailNotRegistered",
-                data: "{'email': '" + args.Value + "'}",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                async: false,
-                success: function (msg) {
-                    args.IsValid = msg.d;
-                }
-            });
-        }
-        
+        function emailvalidate(b, c) { $.ajax({ type: "POST", url: "Register.aspx/isEmailNotRegistered", data: "{'email': '" + c.Value + "'}", contentType: "application/json; charset=utf-8", dataType: "json", async: false, success: function (a) { c.IsValid = a.d } }) }    
     </script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="BannerPlaceHolder" Runat="Server">
@@ -23,8 +10,14 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="CartInfoPlaceHolder" Runat="Server">
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="SildeShowContentPlaceHolder" Runat="Server">
+    <ul class="breadcrumb" style="background-color: transparent;">
+		<li>You are here<span class="divider">/</span></li>
+	    <li><a href="Default.aspx">Home</a> <span class="divider">/</span></li>
+	    <li class="active"><a href="Register.aspx">Register</a></li>
+	</ul>
 </asp:Content>
 <asp:Content ID="Content5" ContentPlaceHolderID="ContentAreaPlaceHolder" Runat="Server">
+    <div class="span9 well">
     <div class="form-horizontal">
         <div class="control-group">
             <label class="control-label" for="inputFirstName"><asp:Literal ID="Literal44" runat="server" Text="<%$ Resources:LangResources, FirstNameText  %>" /></label>
@@ -69,6 +62,19 @@
             <label class="control-label" for="inputPassword"><asp:Literal ID="Literal4" runat="server" Text="<%$ Resources:LangResources, PasswordText  %>" /></label>
             <div class="controls">
                 <asp:TextBox ID="inputPassword" runat="server" placeholder="<%$ Resources:LangResources, PasswordText  %>" TextMode="Password" ></asp:TextBox>
+                <ajaxToolkit:PasswordStrength ID="PS" runat="server"
+                            TargetControlID="inputPassword"
+                            DisplayPosition="RightSide"
+                            StrengthIndicatorType="Text"
+                            PreferredPasswordLength="8"
+                            PrefixText="Strength:"
+                            TextCssClass="label"
+                            MinimumNumericCharacters="1"
+                            MinimumSymbolCharacters="1"
+                            RequiresUpperAndLowerCaseCharacters="false"
+                            TextStrengthDescriptions="Very Poor;Weak;Average;Strong;Excellent"
+                            TextStrengthDescriptionStyles="label-error;label-important;label-warning;label-success;label-info"
+                            CalculationWeightings="50;15;15;20" />
                 <asp:RequiredFieldValidator validationgroup="RegistrationForm" CssClass="text-error" ID="RequiredFieldValidatorPassword" runat="server"
                     ControlToValidate="inputPassword" ErrorMessage="Required field cannot be left blank."
                     Display="Dynamic">
@@ -110,6 +116,7 @@
             </div>
         </div>
     </div>
+     </div>
 </asp:Content>
 <asp:Content ID="Content6" ContentPlaceHolderID="RightPanelPlaceHolder" Runat="Server">
     <div class="btn-group btn-group-vertical">

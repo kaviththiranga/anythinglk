@@ -8,5 +8,14 @@ using System.Web;
 /// </summary>
 public partial class Order
 {
+    public bool isExpired {
+        get {
+            if (DateTime.Compare(DateTime.Now, ExpiresOn)<=0) {
+                return false;
+            }
+
+            return true;
+        }
+    }
 	
 }

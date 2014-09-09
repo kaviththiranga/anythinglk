@@ -46,5 +46,11 @@ public class AdminController
     
     }
 
+    public static void logout()
+    {
+
+        HttpContext.Current.Session["CurrentAdmin"] = null;
+    }
+
 
 }

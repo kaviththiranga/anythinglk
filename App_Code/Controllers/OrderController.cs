@@ -8,10 +8,25 @@ using System.Web;
 /// </summary>
 public class OrderController
 {
-	public OrderController()
-	{
-		//
-		// TODO: Add constructor logic here
-		//
-	}
+    static OrderDAO dao;
+
+    static OrderController() {
+        dao = new OrderDAO();
+    }
+
+    public static bool insertOrUpdate(Order order)
+    {
+        return dao.insertOrUpdate(order);
+    }
+
+    public static List<Order> getOrdersByUser(User user) {
+
+        return dao.getOrdersByUserID(user.UserID);
+    }
+
+    public static List<Order> getOrdersOfCurrentUser()
+    {
+        return dao.getOrdersByUserID(UserController.getCurrentUser().UserID);
+    }
+
 }

@@ -61,13 +61,13 @@ public class OrderDAO : AbstractDAO
 
     }
 
-    public Order getOrderByOrderID(String orderID)
+    public Order getOrderByOrderID(int orderID)
     {
 
         foreach (Order order in allOrdersQuery)
         {
 
-            if (order.OrderID.Equals(orderID))
+            if (order.OrderID == orderID )
             {
                 return order;
             }
@@ -76,14 +76,14 @@ public class OrderDAO : AbstractDAO
         return null;
     }
 
-    public List<Order> getOrdersByUserID(string userID) {
+    public List<Order> getOrdersByUserID(int userID) {
 
         List<Order> result = new List<Order>();
 
         foreach (Order order in allOrdersQuery)
         {
 
-            if (order.UserID.Equals(userID))
+            if (order.UserID == userID)
             {
                 result.Add(order);
             }
